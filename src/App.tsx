@@ -1,7 +1,20 @@
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Games from "./pages/Games";
+import Nav from "./components/Nav";
+import Footer from "./components/Footer";
+
 const App = () => (
-  <div>
-    <h1 className="text-center uppercase clr-accent-400 p-block-40 bg-neutral-900 fw-bold fs-900">Hello World!</h1>
-  </div>
+  <>
+    <Nav />
+    <main className="container">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="games" element={<Games />} />
+      </Routes>
+    </main>
+    <Footer />
+  </>
 );
 
 export default App;

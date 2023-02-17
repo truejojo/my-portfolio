@@ -5,13 +5,17 @@ $ff-base: $ff-sans;
 $ff-accent: $ff-serif;
 
 $font-sizes: (
+  100: .5rem,
+  200: .75rem,
   300: 1rem,
   400: 1.125rem,
   500: 1.3125rem,
   600: clamp(1.4rem, 0.5rem + 3vw, 1.6875rem),
+  700: clamp(2rem, 0.5rem + 5vw, 2.25rem),
   800: clamp(2.5rem, 0.5rem + 7vw, 3.75rem),
   900: clamp(2.5rem, 0.5rem + 10vw, 5rem),
 );
 
 $fw-400: 400;
 $fw-700: 700;
+$fw-900: 900;

@@ -11,25 +11,27 @@
   padding: $button-padding-block $button-padding-inline;
   transition: 275ms ease;
 
-  &[data-type="accent"] {
-    background-color: clr(accent, 400);
-    color: clr(neutral, 900);
+  &[data-type="accent-1"] {
+    background-color: clr(accent-1, 500);
 
-    // &:is(:hover, :focus) {
-    //   background-color: clr(accent, 500);
-    //   color: clr(neutral, 100);
-    // }
+    &:is(:hover, :focus) {
+      background-color: clr(accent-1, 700);
+    }
   }
 
-  &[data-type="outline"] {
-    background: transparent;
-    outline: $outline-size solid clr(neutral, 100);
-    outline-offset: calc($outline-size * -1);
-    color: clr(neutral, 100);
+  &[data-type="accent-2"] {
+    background-color: clr(accent-2, 500);
+
+    &:is(:hover, :focus) {
+      background-color: clr(accent-2, 700);
+    }
   }
 
-  &:is(:hover, :focus) {
-    background-color: clr(neutral, 100);
-    color: clr(neutral, 900);
+  &[data-type="accent-3"] {
+    background-color: clr(accent-3, 500);
+
+    &:is(:hover, :focus) {
+      background-color: clr(accent-3, 700);
+    }
   }
 }
