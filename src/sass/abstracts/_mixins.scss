@@ -1,0 +1,39 @@
+@use "sass:meta";
+@use "sass:math";
+@use "sass:map";
+@use "breakpoints" as *;
+
+// @mixin mq($size) {
+//   $breakpoint: "";
+
+//   @if map.has-key($breakpoints, $size) {
+//     $breakpoint: map.get($breakpoints, $size);
+//   } @else if type-of($size) == "number" and not unitless($size) {
+//     $breakpoint: $size;
+//   } @else {
+//     @error 'Value #{$size} is not in the map or the number has not an unit!';
+//   }
+
+//   @media sreen and (min-width: $breakpoint) {
+//     @content;
+//   }
+// }
+
+@mixin mq($breakpointSize) {
+  @if map.has-key($breakpoints, $breakpointSize) {
+    $breakpoint: map-get($breakpoints, $breakpointSize);
+    @media screen and (min-width: $breakpoint) {
+      @content;
+    }
+  } @else if meta.type-of($breakpointSize) == number {
+    @if math.is-unitless($breakpointSize) {
+      @error 'when using a number with @mq() make sure to include a unit';
+    } @else {
+      @media screen and (min-width: $breakpointSize) {
+        @content;
+      }
+    }
+  } @else {
+    @error 'the keyword #{$breakpointSize} is not in the $breakpoints map';
+  }
+}

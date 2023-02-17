@@ -1,0 +1,37 @@
+$space-sizes: (
+  8: 0.5rem,
+  12: 0.75rem,
+  16: 1rem,
+  20: 1.25rem,
+  24: 1.5rem,
+  28: 1.75rem,
+  32: 2rem,
+  36: 2.25rem,
+  40: 2.5rem,
+  44: 2.75rem,
+  48: 3rem,
+);
+
+// $section-padding: 7rem;
+// $hero-padding: 20rem;
+// $card-body-padding: 5rem;
+
+// expamples for space in a website
+$hero-padding: clamp(15rem, 15vh, 20rem);
+$section-padding: clamp(3rem, 10vh, 7rem);
+$card-body-padding: clamp(1rem, 2.5vw, 5rem);
+
+// use in other files
+$container-inline-padding: 1rem;
+$container-max-width: 70rem;
+$container-max-width-wide: 85rem;
+
+$grid-gap: 1.5rem;
+$flex-group-gap: 1rem;
+
+$button-padding: 0.5em;
+$button-padding-multiplicator: 2.5;
+$button-padding-block: 1.125em;
+$button-padding-inline: 2em;
+
+$outline-size: 5px;

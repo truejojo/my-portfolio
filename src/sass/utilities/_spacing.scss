@@ -1,0 +1,64 @@
+@use "../abstracts" as *;
+
+.section {
+  padding-block: $section-padding;
+}
+
+.mx-auto {
+  margin-inline: auto;
+}
+.mx-left-auto {
+  margin-left: auto;
+}
+.mx-right-auto {
+  margin-right: auto;
+}
+
+@each $space-name, $space-value in $space-sizes {
+  .m {
+    &-#{$space-name} {
+      margin: $space-value;
+    }
+    &-top-#{$space-name} {
+      margin-block-start: $space-value;
+    }
+    &-bottom-#{$space-name} {
+      margin-block-end: $space-value;
+    }
+    &-block-#{$space-name} {
+      margin-block: $space-value;
+    }
+    &-left-#{$space-name} {
+      margin-inline-start: $space-value;
+    }
+    &-right-#{$space-name} {
+      margin-inline-end: $space-value;
+    }
+    &-inline-#{$space-name} {
+      margin-inline: $space-value;
+    }
+  }
+  .p {
+    &-#{$space-name} {
+      padding: $space-value;
+    }
+    &-top-#{$space-name} {
+      padding-block-start: $space-value;
+    }
+    &-bottom-#{$space-name} {
+      padding-block-end: $space-value;
+    }
+    &-block-#{$space-name} {
+      padding-block: $space-value;
+    }
+    &-left-#{$space-name} {
+      padding-inline-start: $space-value;
+    }
+    &-right-#{$space-name} {
+      padding-inline-end: $space-value;
+    }
+    &-inline-#{$space-name} {
+      padding-inline: $space-value;
+    }
+  }
+}
