@@ -13,6 +13,9 @@
 .mx-right-auto {
   margin-right: auto;
 }
+.mx-top-auto {
+  margin-top: auto;
+}
 
 @each $space-name, $space-value in $space-sizes {
   .m {

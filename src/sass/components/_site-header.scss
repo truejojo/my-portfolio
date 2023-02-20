@@ -1,0 +1,18 @@
+@use "../abstracts/" as *;
+
+.site-component {
+  .logo {
+    text-decoration: none;
+  }
+  .subtitle {
+    letter-spacing: 0.155em;
+  }
+
+  .main-nav {
+    align-self: end;
+  }
+
+  .social-media-nav {
+    align-self: center;
+  }
+}
