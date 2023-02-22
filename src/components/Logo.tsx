@@ -1,13 +1,13 @@
-import { NavLink } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
 interface ILogoProps {
-  color: string
+  color: string;
 }
 
-const Logo = ({color}: ILogoProps) => (
-  <NavLink to="/" className={`logo | grid ${color}`}>
+const Logo = ({ color }: ILogoProps) => (
+  <HashLink to="/#home" className={`logo | grid ${color}`}>
     <span className="title | ff-accent fs-750">My Portfolio</span>
     <span className="subtitle uppercase fs-450">Johannes Vehring</span>
-  </NavLink>
+  </HashLink>
 );
 export default Logo;

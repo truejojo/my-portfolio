@@ -1,6 +1,11 @@
-import React from "react";
+import Section from "../components/Section";
+import { getSkills } from "../data/skills";
+import { getInterests } from "../data/interests";
 
-const Home = () => {
+const skills = getSkills();
+const interests = getInterests();
+
+const Home = () => {  
   return (
     <>
       <section className="intro">
@@ -11,7 +16,7 @@ const Home = () => {
               Frontend Developer
             </p>
             <img
-              className="img"
+              className="img | box-shadow-5"
               src="./assets/20221129_Primephoto_G02A3621_hoch.jpg"
               alt=""
             />
@@ -19,13 +24,16 @@ const Home = () => {
         </div>
       </section>
 
-      <section id="skills" className="skills | bg-primary-300">
+      <Section {...skills} />
+
+      {/* <section id="skills" className="skills | bg-primary-300">
         <div className="container">
-          <h2 className="text-center">Meine Fähigkeiten</h2>
+          <h2 className="text-center fs-800 m-bottom-48">Meine Fähigkeiten</h2>
+
           <div className="g-auto-fit-columns">
-            <div>
-              <h3>Sprachen</h3>
-              <ul role="list">
+            <div className="card | bg-accent-1-300 box-shadow-5">
+              <h3 className="fs-700 m-bottom-24">Sprachen</h3>
+              <ul className="flow fs-600 bg-accent-1-500 p-24" role="list">
                 <li>JS/ES6</li>
                 <li>React</li>
                 <li>ReactTS</li>
@@ -33,18 +41,20 @@ const Home = () => {
                 <li>CSS/SCSS</li>
               </ul>
             </div>
-            <div>
-              <h3>Kenntnisse</h3>
-              <ul role="list">
-                <li>Git</li>
+
+            <div className="card | bg-accent-1-300 box-shadow-5">
+              <h3 className="fs-700 m-bottom-24">Kenntnisse</h3>
+              <ul className="flow fs-600 bg-accent-1-500 p-24" role="list">
+              <li>Git</li>
                 <li>VSCode</li>
                 <li>Refactoring</li>
                 <li>Clean Code</li>
               </ul>
             </div>
           </div>
+          
         </div>
-      </section>
+      </section> */}
 
       <section id="about" className="about | bg-primary-700">
         <div className="container">
@@ -126,7 +136,8 @@ const Home = () => {
         </div>
       </section>
 
-      <section id="interests" className="interests | bg-primary-300">
+      <Section {...interests} />
+      {/* <section id="interests" className="interests | bg-primary-300">
         <div className="container g-auto-fit-columns">
           <header>
             <h2>Interessen</h2>
@@ -149,7 +160,7 @@ const Home = () => {
             </ul>
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 };
