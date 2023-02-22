@@ -1,10 +1,10 @@
 export const getSkills = () => {
   const skills = {
-    title: "Meine Fähigkeiten",
+    headline: "Meine Fähigkeiten",
     content: [
       {
         id: 1,
-        subtitle: "Sprachen",
+        title: "Sprachen",
         items: [
           {
             id: 1,
@@ -30,7 +30,7 @@ export const getSkills = () => {
       },
       {
         id: 2,
-        subtitle: "Kenntnisse",
+        title: "Kenntnisse",
         items: [
           {
             id: 1,

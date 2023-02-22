@@ -8,6 +8,10 @@
   margin-inline: auto;
 }
 
+.container[data-type="small"] {
+  --max-width: #{$container-max-width-small};
+}
+
 .container[data-type="wide"] {
   --max-width: #{$container-max-width-wide};
 }

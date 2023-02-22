@@ -1,11 +1,11 @@
 export const getInterests = () => {
   const interests = {
-    title: "Interessen",
-    subtitle: "was ich noch lernen will",
+    headline: "Interessen",
+    subheadline: "was ich noch lernen will",
     content: [
       {
         id: 1,
-        subtitle: "Sprachen",
+        title: "Sprachen",
         items: [
           {
             id: 1,
@@ -23,7 +23,7 @@ export const getInterests = () => {
       },
       {
         id: 2,
-        subtitle: "Kenntnisse",
+        title: "Kenntnisse",
         items: [
           {
             id: 1,

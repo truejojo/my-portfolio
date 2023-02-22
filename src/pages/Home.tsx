@@ -1,11 +1,13 @@
 import Section from "../components/Section";
 import { getSkills } from "../data/skills";
 import { getInterests } from "../data/interests";
+import { getProjects } from "../data/projects";
 
 const skills = getSkills();
 const interests = getInterests();
+const projects = getProjects();
 
-const Home = () => {  
+const Home = () => {
   return (
     <>
       <section className="intro">
@@ -24,37 +26,7 @@ const Home = () => {
         </div>
       </section>
 
-      <Section {...skills} />
-
-      {/* <section id="skills" className="skills | bg-primary-300">
-        <div className="container">
-          <h2 className="text-center fs-800 m-bottom-48">Meine Fähigkeiten</h2>
-
-          <div className="g-auto-fit-columns">
-            <div className="card | bg-accent-1-300 box-shadow-5">
-              <h3 className="fs-700 m-bottom-24">Sprachen</h3>
-              <ul className="flow fs-600 bg-accent-1-500 p-24" role="list">
-                <li>JS/ES6</li>
-                <li>React</li>
-                <li>ReactTS</li>
-                <li>HTML</li>
-                <li>CSS/SCSS</li>
-              </ul>
-            </div>
-
-            <div className="card | bg-accent-1-300 box-shadow-5">
-              <h3 className="fs-700 m-bottom-24">Kenntnisse</h3>
-              <ul className="flow fs-600 bg-accent-1-500 p-24" role="list">
-              <li>Git</li>
-                <li>VSCode</li>
-                <li>Refactoring</li>
-                <li>Clean Code</li>
-              </ul>
-            </div>
-          </div>
-          
-        </div>
-      </section> */}
+      <Section {...skills} idcn="skills" accent="2" />
 
       <section id="about" className="about | bg-primary-700">
         <div className="container">
@@ -136,31 +108,9 @@ const Home = () => {
         </div>
       </section>
 
-      <Section {...interests} />
-      {/* <section id="interests" className="interests | bg-primary-300">
-        <div className="container g-auto-fit-columns">
-          <header>
-            <h2>Interessen</h2>
-            <p className="subtitle">was ich noch lernen will</p>
-          </header>
-          <div>
-            <h3>Sprachen</h3>
-            <ul>
-              <li>mehr React/TS</li>
-              <li>Firebase</li>
-              <li>Node</li>
-            </ul>
-          </div>
-          <div>
-            <h3>Kenntnisse</h3>
-            <ul>
-              <li>FP</li>
-              <li>TDD</li>
-              <li>...und bei euch?</li>
-            </ul>
-          </div>
-        </div>
-      </section> */}
+      {/* <Section {...projects} idcn="projects" accent="3" /> */}
+
+      <Section {...interests} idcn="interests" accent="1" />
     </>
   );
 };

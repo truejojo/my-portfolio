@@ -1,30 +1,27 @@
 import Card from "./Card";
-import { IItemProps } from "./Item";
+import { ICartProps } from "./Card";
 
-// export interface IItemProps {
-//   id: number;
-//   item: string;
-// }
+export type TAccent = "1" | "2" | "3";
 
-export interface IContentProps {
-  id: number;
-  subtitle: string;
-  items: IItemProps[];
+interface ISectionProps {
+  headline: string;
+  subheadline?: string;
+  content: ICartProps[];
+  idcn: string;
+  accent: TAccent;
 }
 
-interface ISectionObjProps {
-  title: string;
-  content: IContentProps[];
-}
-
-const Section = ({ title, content }: ISectionObjProps) => (
-  <section id="skills" className="skills | bg-primary-300">
-    <div className="container">
-      <h2 className="text-center fs-800 m-bottom-48">{title}</h2>
+const Section = ({ headline, subheadline, content, idcn, accent }: ISectionProps) => (
+  <section id={idcn} className={`bg-primary-300 ${idcn}`}>
+    <div className="container" data-type="small">
+      <header className="text-center  m-bottom-48">
+        <h2 className="fs-800">{headline}</h2>
+        {subheadline && <p className="fs-600">{subheadline}</p>}
+      </header>
 
       <div className="g-auto-fit-columns">
         {content.map((item) => (
-          <Card key={item.id} {...item} />
+          <Card key={item.id} {...item} accent={accent} />
         ))}
       </div>
     </div>
