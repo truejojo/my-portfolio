@@ -3,6 +3,8 @@
 .button {
   display: inline-flex;
   cursor: pointer;
+  color: clr(neutral, 300);
+  letter-spacing: 2px;
   text-decoration: none;
   text-transform: uppercase;
   line-height: 1;
@@ -10,6 +12,7 @@
   font-weight: $fw-700;
   padding: $button-padding-block $button-padding-inline;
   transition: 275ms ease;
+  justify-self: center;
 
   &[data-type="accent-1"] {
     background-color: clr(accent-1, 500);

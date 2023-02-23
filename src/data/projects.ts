@@ -5,21 +5,18 @@ export const getProjects = () => {
     content: [
       {
         id: 1,
-        title: "Reiehn",
+        title: "Reihen",
         text: "Zum Erlernen der Mathematik, die Reihen 1 - 10",
-        button: "zum Spiel"
       },
       {
         id: 2,
         title: "1 mal 1",
         text: "Übungsaufgaben zum 1 mal 1",
-        button: "zum Spiel"
       },
       {
         id: 3,
         title: "Merkfähigkeit",
         text: "Das Spiel hat ähnlichkeit mit dem bekannten Spiel 'Simon'",
-        button: "zum Spiel"
       },      
     ],
   };
