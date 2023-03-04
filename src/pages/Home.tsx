@@ -14,9 +14,9 @@ const Home = () => {
   return (
     <>
       <SectionIntro />
-      
+
       <Section {...skills} idcn="skills" accent="2" />
-      
+
       <SectionAbout />
 
       <SectionProjects {...projects} idcn="projects" />

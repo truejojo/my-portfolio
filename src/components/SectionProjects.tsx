@@ -23,7 +23,7 @@ const SectionProjects = ({
       <div className="g-auto-fit-columns">
         {content.length > 0 &&
           content.map((item, index) => (
-            <CardProject {...item} index={index} />
+            <CardProject key={item.id} {...item} index={index} />
           ))}
       </div>
     </div>
