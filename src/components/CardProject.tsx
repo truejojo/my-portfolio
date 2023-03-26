@@ -18,5 +18,5 @@ const CardProject = ({ title, text, index }: ICardProjectPropsExtra) => (
     </button>
   </div>
 );
-
+ 
 export default CardProject;
