@@ -1,13 +1,17 @@
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 
-const Nav = () => {
+const Header = () => {
   return (
-    <nav className="main-nav">
-      <ul className="flex-group fs-450" role="list">
-        <li>
-          <Link to="/">Home</Link>
-        </li>
+    <header>
+      <div>
+      <HashLink to="/#home" >
+    <span >My Portfolio</span>
+    <span >Johannes Vehring</span>
+  </HashLink>
+      </div>
+      <nav >
+      <ul >
         <li>
           <HashLink to="/#skills">Skills</HashLink>
         </li>
@@ -25,7 +29,8 @@ const Nav = () => {
         </li>
       </ul>
     </nav>
+    </header>
   );
 };
 
-export default Nav;
+export default Header;

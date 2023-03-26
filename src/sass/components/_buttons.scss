@@ -3,38 +3,43 @@
 .button {
   display: inline-flex;
   cursor: pointer;
-  color: clr(neutral, 300);
-  letter-spacing: 2px;
+  letter-spacing: $button-letter-spacing;
   text-decoration: none;
   text-transform: uppercase;
   line-height: 1;
-  border: none;
-  font-weight: $fw-700;
-  padding: $button-padding-block $button-padding-inline;
-  transition: 275ms ease;
-  justify-self: center;
+  border: $button-border;
+  font-weight: $button-font-weight;
+  padding: $button-padding-default;
+  transition: color $button-transition, background $button-transition;
+  justify-self: $button-justify-self;
 
-  &[data-type="accent-1"] {
-    background-color: clr(accent-1, 500);
+  &[data-type="1x1"] {
+    background-color: $button-1x1-background;
+    color: $button-1x1-color;
 
     &:is(:hover, :focus) {
-      background-color: clr(accent-1, 700);
+      background-color: $button-1x1-background-hover;
+    color: $button-1x1-color-hover;
+    }
+  }
+  &[data-type="1x1-task"] {
+    background-color: $button-1x1-task-background;
+    color: $button-1x1-task-color;
+
+    &:is(:hover, :focus) {
+      background-color: $button-1x1-task-background-hover;
+    color: $button-1x1-task-color-hover;
+    }
+  }
+  &[data-type="letter"] {
+    background-color: $button-letter-background;
+    color: $button-letter-color;
+
+    &:is(:hover, :focus) {
+      background-color: $button-letter-background-hover;
+    color: $button-letter-color-hover;
     }
   }
 
-  &[data-type="accent-2"] {
-    background-color: clr(accent-2, 500);
 
-    &:is(:hover, :focus) {
-      background-color: clr(accent-2, 700);
-    }
-  }
-
-  &[data-type="accent-3"] {
-    background-color: clr(accent-3, 500);
-
-    &:is(:hover, :focus) {
-      background-color: clr(accent-3, 700);
-    }
-  }
 }

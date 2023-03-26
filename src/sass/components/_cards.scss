@@ -2,8 +2,17 @@
 
 .card {
   display: grid;
-  gap: 1rem;
+  gap: $card-flow-spacing;
   padding: $card-body-padding;
+  color: $card-color-default;
+  font-family: $card-font-family;
 
-  grid-template-rows: auto 1fr;
+  // grid-template-rows: auto 1fr;
+  .title {
+    font-size: $card-heading-font-size;
+  }
+  
+  & div {
+   padding: $card-body-padding-inside; 
+  }
 }
