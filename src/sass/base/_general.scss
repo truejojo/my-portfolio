@@ -1,4 +1,11 @@
 @use "../abstracts/" as *;
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 body {
   font-family: $body-font-family;
   font-size: $body-font-size;
@@ -12,12 +19,21 @@ h1, h2, h3 {
   line-height: 1.1;
 }
 
-#root {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+a {
+  color: $link-color;
 }
+
+a:is(:hover, :focus) {
+  color: $link-color-hover;
+}
+
 
 section {
   padding-block: $section-padding-block;
+
+  // & p & .text-center {
+  //   max-width: 60ch;
+  //   margin-inline: auto;
+  // }
 }
+

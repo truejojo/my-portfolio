@@ -98,6 +98,9 @@ $color-secondary-III-500: var(--secondary-III-500);
 $color-secondary-III-700: var(--secondary-III-700);
 $color-secondary-III-900: var(--secondary-III-900);
 
-$color-accent-I: var(--secondary-I-300);
-$color-accent-I-hover: var(--secondary-I-500);
-$color-accent-II: var(--secondary-II-900);
+$clr-accent-I: var(--secondary-II-500);
+$clr-accent-I-hover: var(--secondary-II-300);
+$clr-accent-II: var(--secondary-II-900);
+
+$clr-opacity-I: rgb($-clr-blue-500, .65);
+$clr-opacity-II: rgb($-clr-blue-500, .95);

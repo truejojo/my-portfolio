@@ -3,16 +3,26 @@
 .card {
   display: grid;
   gap: $card-flow-spacing;
-  padding: $card-body-padding;
-  color: $card-color-default;
+  padding: $card-padding;
   font-family: $card-font-family;
-
-  // grid-template-rows: auto 1fr;
+  box-shadow: $box-shadow-3;
+  border-radius: $card-border-radius;
+  line-height: 1;
+  
+  grid-template-rows: auto 1fr;
+  
   .title {
     font-size: $card-heading-font-size;
+    margin-bottom: $size-8;
   }
   
-  & div {
-   padding: $card-body-padding-inside; 
+  .list {
+    padding: $card-padding-inside;
+    box-shadow: $box-shadow-1;
+    border-radius: $card-border-radius;
+  }
+
+  .button {
+    margin-top: $size-10;
   }
 }

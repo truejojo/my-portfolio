@@ -1,54 +1,65 @@
-// @use "../abstracts/" as *;
+@use "../abstracts/" as *;
 
-// .intro {
-//   .content {
-//     display: grid;
-//     gap: $grid-gap;
-//   }
-//   .title {
-//     font-size: 3.5rem;
-//     line-height: 1.1;
-//   }
-//   .subtitle {
-//     display: flex;
-//     align-items: center;
-//     height: 4rem;
-//     padding-left: 3rem;
-//     letter-spacing: 2px;
-//     grid-area: 3;
-//   }
-//   .img {
-//     object-fit: cover;
-//     object-position: 0% 8%;
-//     width: 100%;
-//     height: 300px;
-//   }
+.intro {
+  .content {
+    display: grid;
+    gap: $grid-gap;
+  }
 
-//   @include mq(56.25em) {
-//     .content {
-//       grid-template-columns: 1fr 2rem 1fr 4rem;
-//       grid-template-rows: 1fr 2rem auto 4rem;
-//       gap: 0;
-//     }
-//     .title {
-//       grid-column: 1 / 2;
-//       grid-row: 1 / 2;
+  .title {
+    font-size: $font-size-900;
+    font-weight: $font-weight-thin;
+  }
 
-//       display: flex;
-//       align-items: center;
+  .subtitle {
+    display: flex;
+    align-items: center;
+    height: 4rem;
+    padding-left: 3rem;
+    letter-spacing: 2px;
 
-//       font-size: 5rem;
-//     }
-//     .subtitle {
-//       grid-column: 1 / -1;
-//       grid-row: 3 / 4;
-//       height: 5rem;
-//     }
-//     .img {
-//       grid-column: 3 / 4;
-//       grid-row: 1 / -1;
+    font-size: $font-size-500;
+    font-weight: $font-weight-bold;
+    letter-spacing: $letter-spacing-default;
+    color: $color-secondary-II-300;
+    background-color: $color-secondary-III-900;
+  }
 
-//       height: auto;
-//     }
-//   }
-// }
+  .img {
+    object-fit: cover;
+    object-position: 0% 8%;
+    width: 100%;
+    height: 300px;
+
+    border-radius: $border-radius;
+  }
+
+  @include mq(wide) {
+    .content {
+      grid-template-columns: 1fr 2rem 1fr 4rem;
+      grid-template-rows: 1fr 2rem auto 4rem;
+      gap: 0;
+    }
+
+    .title {
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+
+      display: flex;
+      align-items: center;
+    }
+
+    .subtitle {
+      grid-column: 1 / -1;
+      grid-row: 3 / 4;
+      height: 5rem;
+    }
+
+    .img {
+      grid-column: 3 / 4;
+      grid-row: 1 / -1;
+
+      height: auto;
+    }
+  }
+}

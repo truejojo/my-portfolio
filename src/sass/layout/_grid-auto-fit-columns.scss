@@ -1,6 +1,6 @@
 @use "../abstracts" as *;
 
-.g-auto-fit-columns {
+.grid-auto-fit-columns {
   display: grid;
   gap: var(--grid-gap, $grid-gap);
   grid-template-columns: repeat(

@@ -4,8 +4,8 @@ interface ILogoProps {
   color: string;
 }
 
-const Logo = ({ color }: ILogoProps) => (
-  <HashLink to="/#home" className={`logo | grid ${color}`}>
+const Logo = () => (
+  <HashLink to="/#home">
     <span className="title | ff-accent fs-750">My Portfolio</span>
     <span className="subtitle uppercase fs-450">Johannes Vehring</span>
   </HashLink>

@@ -1,6 +1,8 @@
+@use "../abstracts/" as *;
+
 .flex-space-between {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: $flex-gap;
   justify-content: space-between;
 }

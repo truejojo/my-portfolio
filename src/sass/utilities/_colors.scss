@@ -1,19 +1,6 @@
 @use "sass:color";
 @use "../abstracts" as *;
 
-// @function chekHighContrast($color, $lightnessValue: 50) {
-//   @return if(
-//     color.lightness($color) < $lightnessValue,
-//     $color-neutral-300,
-//     $color-neutral-300
-//   );
-// }
-
-// @mixin chooseBgClrCombo($bg) {
-//   background: $bg;
-//   color: chekHighContrast($bg);
-// }
-
 @each $color, $shade-map in $colors {
   @each $shade, $value in $shade-map {
     .bg-#{$color}-#{$shade} {

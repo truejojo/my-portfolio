@@ -8,8 +8,10 @@
   text-transform: uppercase;
   line-height: 1;
   border: $button-border;
+  border-radius: $button-border-radius;
   font-weight: $button-font-weight;
   padding: $button-padding-default;
+  box-shadow: $box-shadow-1;
   transition: color $button-transition, background $button-transition;
   justify-self: $button-justify-self;
 

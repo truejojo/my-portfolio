@@ -1,0 +1,15 @@
+@use "../abstracts/" as *;
+
+.section-header {
+  text-align: center;
+  margin-bottom: $size-10;
+  
+  .title {
+    font-size: $font-size-600;
+  }
+
+  p {
+    max-width: 60ch;
+    margin-inline: auto;
+  }
+}

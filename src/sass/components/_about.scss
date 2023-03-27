@@ -1,26 +1,38 @@
-// @use "../abstracts/" as *;
+@use "../abstracts/" as *;
 
-// .about {
-//   .person {
-//     display: grid;
-//     gap: 3rem;
+.about {
+  .person {
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-template-areas:
+      "title"
+      "text"
+      "img";
+  }
 
-//     @include mq(medium) {
-//       grid-template-columns: 1fr auto;
-//     }
-//   }
+  .title {
+    font-size: $font-size-600;
+    margin-bottom: $size-4;
+    grid-area: title;
+  }
 
-//   .text {
-//     display: flex;
-//     align-items: center;
-//   }
+  .text {
+    grid-area: text;
+  }
+  
+  .img {
+    font-size: 160px;
+    margin-block: -2rem;
+    justify-self: center;
+    grid-area: img;
+  }
 
-//   .img {
-//     font-size: 15rem;
-//     margin-block: -3rem;
-//   }
-
-//   a {
-//     color: clr(accent-2, 500);
-//   }
-// }
+  @include mq(medium) {
+    .person {
+      grid-template-areas:
+        "title title img"
+        "text text img"
+        "text text img";
+    }
+  }
+}

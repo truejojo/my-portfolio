@@ -1,20 +1,26 @@
-// @use "../abstracts/" as *;
+@use "../abstracts/" as *;
 
-// .projects {
-//   background-image: url('./assets/writing-desk.jpg');
-//   background-repeat: no-repeat;
-//   background-size: cover;
+.projects {
+  background-image: url("../../../public/assets/writing-desk.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 
-//   .header{
-//     background: rgb(clr(accent-1, 500), .8);
+  .section-header {
+    background: $card-color-opacity-II;
+  }
 
-//     p {
-//       max-width: 45ch;
-//       margin-inline: auto;
-//     }
-//   }
+  .card {
+    background: $card-color-opacity-I;
 
-//   .card {
-//     background: rgb(clr(primary, 500), .8);
-//   }
-// }
+    .title {
+      text-shadow: $card-text-shadow;
+      font-weight: $card-font-weight;
+      letter-spacing: $card-letter-spacing;
+    }
+
+    .text {
+      line-height: 1.4;
+    }
+  }
+}

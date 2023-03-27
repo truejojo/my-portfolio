@@ -1,34 +1,15 @@
-import { Link } from "react-router-dom";
-import { HashLink } from "react-router-hash-link";
+import Logo from "./Logo";
+import MainNav from "./MainNav";
 
 const Header = () => {
   return (
-    <header>
-      <div>
-      <HashLink to="/#home" >
-    <span >My Portfolio</span>
-    <span >Johannes Vehring</span>
-  </HashLink>
+    <header className="site-header | bg-primary-700 px-block-4">
+      <div className="container" data-type="wide">
+        <div className="flex-space-between">
+          <Logo />
+          <MainNav />
+        </div>
       </div>
-      <nav >
-      <ul >
-        <li>
-          <HashLink to="/#skills">Skills</HashLink>
-        </li>
-        <li>
-          <HashLink to="/#about">About</HashLink>
-        </li>
-        <li>
-          <HashLink to="/#projects">Projects</HashLink>
-        </li>
-        <li>
-          <HashLink to="/#interests">Interests</HashLink>
-        </li>
-        <li>
-          <Link to="games">Games</Link>
-        </li>
-      </ul>
-    </nav>
     </header>
   );
 };

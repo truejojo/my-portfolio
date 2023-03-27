@@ -1,35 +1,41 @@
-
 const Home = () => {
   return (
     <>
-      <section>
-        <div>
-          <div>
-            <h1>Moin, ich bin Johannes Vehring</h1>
-            <p>Frontend Developer</p>
-            <img src="./assets/20221129_Primephoto_G02A3621_hoch.jpg" alt="" />
+      <section id="intro" className="intro | bg-primary-500">
+        <div className="container">
+          <div className="content">
+            <h1 className="title">Moin, ich bin Johannes Vehring</h1>
+            <p className="subtitle">Frontend Developer</p>
+            <img
+              className="img "
+              src="./assets/20221129_Primephoto_G02A3621_hoch.jpg"
+              alt="Johannes Vehring trägt eine Brille"
+            />
           </div>
         </div>
       </section>
 
-      <section>
-        <div>
-          <header>
-            <h2>Meine Fähigkeiten</h2>
+      <section id="skills" className="skills | bg-primary-300">
+        <div className="container" data-type="small">
+          <header className="section-header">
+            <h2 className="title">Meine Fähigkeiten</h2>
           </header>
 
-          <div>
-            <div>
-              <h3>Sprachen</h3>
-              <ul>
+          <div className="grid-auto-fit-columns">
+            <div className="card | bg-secondary-II-300">
+              <h3 className="title">Sprachen</h3>
+              <ul className="list | flow bg-secondary-II-700" role="list">
                 <li>JS/ES6</li>
                 <li>React</li>
                 <li>ReactTS</li>
                 <li>HTML</li>
                 <li>CSS/SCSS</li>
               </ul>
-              <h3>Kenntnisse</h3>
-              <ul>
+            </div>
+
+            <div className="card | bg-secondary-II-300">
+              <h3 className="title">Kenntnisse</h3>
+              <ul className="list | flow bg-secondary-II-700" role="list">
                 <li>Git</li>
                 <li>VSCode</li>
                 <li>Refactoring</li>
@@ -40,17 +46,18 @@ const Home = () => {
         </div>
       </section>
 
-      <section>
-        <div>
-          <h2>Über mich</h2>
-          <div>
-            <p>
+      <section id="about" className="about | bg-primary-700">
+        <div className="container" data-type="small">
+          <div className="person">
+            <h2 className="title">Über mich</h2>
+            <p className="text">
               Ich bin ein Familienmensch. Papa, Ehemann und leidenschaftlicher
               Programmierer 👨‍💻. Fahre gerne Fahrrad 🚲 und mag Fussball ⚽️.
             </p>
-            <span>👨‍👩‍👧‍👦</span>
+            <span className="img">👨‍👩‍👧‍👦</span>
           </div>
-          <div>
+
+          <div className="flow">
             <p>
               2016 habe ich meine Umschulung zum Anwendungsentwickler
               erfolgreich abgeschlossen 👨‍🎓, nun möchte ich auch in diesem Beruf
@@ -94,58 +101,70 @@ const Home = () => {
         </div>
       </section>
 
-      <section>
-        <div>
-          <header>
-            <h2>Meine Projekte</h2>
+      <section id="projects" className="projects" data-type="wide">
+        <div className="container">
+          <header className="section-header | flow bg-primary-700 px-block-12 px-inline-8 box-shadow-3 border-radius">
+            <h2 className="title ff-accent-I letter-spacing-loose">Meine Projekte</h2>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
               delectus similique et facilis unde qui
             </p>
           </header>
-          <div>
-            <div>
-              <h3>Reihen</h3>
-              <p>Zum Erlernen der Mathematik, die Reihen 1 - 10</p>
-              <button>zum spiel</button>
+
+          <div className="grid-even-columns text-center">
+            <div className="card">
+              <h3 className="title clr-secondary-I-500">Reihen</h3>
+              <p className="text">Zum Erlernen der Reihen 1 - 10</p>
+              <button className="button" data-type="1x1">
+                zum spiel
+              </button>
             </div>
-            <div>
-              <h3>1 mal 1</h3>
-              <p>Übungsaufgaben zum 1 mal 1</p>
-              <button>zum spiel</button>
+
+            <div className="card">
+              <h3 className="title clr-secondary-II-500">1 mal 1</h3>
+              <p className="text">Übungsaufgaben zum 1 mal 1</p>
+              <button className="button" data-type="1x1-task">
+                zum spiel
+              </button>
             </div>
-            <div>
-              <h3>Merkfähigkeit</h3>
-              <p>Das Spiel hat ähnlichkeit mit dem bekannten Spiel 'Simon'</p>
-              <button>zum spiel</button>
+
+            <div className="card">
+              <h3 className="title clr-secondary-III-500">Buchstaben</h3>
+              <p className="text">Zumr erlernen der Buchstaben</p>
+              <button className="button" data-type="letter">
+                zum spiel
+              </button>
             </div>
           </div>
         </div>
       </section>
 
-      <section>
-        <div>
-          <header>
-            <h2>Interessen</h2>
+      <section id="interests" className="interests | bg-primary-300">
+        <div className="container" data-type="small">
+          <header className="section-header">
+            <h2 className="title">Interessen</h2>
             <p>was ich noch lernen will</p>
           </header>
 
-          <div>
-            <div>
-              <h3>Sprachen</h3>
-              <ul>
+          <div className="grid-auto-fit-columns">
+            <div className="card | bg-secondary-I-300">
+              <h3 className="title">Sprachen</h3>
+              <ul className="list | flow bg-secondary-I-700" role="list">
                 <li>mehr React/TS</li>
                 <li>Firebase</li>
                 <li>Node</li>
               </ul>
-              <h3>Kenntnisse</h3>
-              <ul>
+            </div>
+
+            <div className="card | bg-secondary-I-300">
+              <h3 className="title">Kenntnisse</h3>
+              <ul className="list | flow bg-secondary-I-700" role="list">
                 <li>FP</li>
                 <li>TDD</li>
                 <li>und bei euch?</li>
               </ul>
             </div>
-          </div>
+          </div>          
         </div>
       </section>
     </>

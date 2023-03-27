@@ -3,8 +3,8 @@ import { HashLink } from "react-router-hash-link";
 
 const MainNav = () => {
   return (
-    <nav>
-      <ul>
+    <nav className="nav main-nav">
+      <ul className="list | flex-group" role="list">
         <li>
           <HashLink to="/#skills">Skills</HashLink>
         </li>
