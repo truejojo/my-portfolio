@@ -1,0 +1,10 @@
+@use "sass:color";
+@use "./colors" as *;
+
+@function getClrOfContrast($bg, $lightnessValue: 50) {
+  @return if(
+    color.lightness($bg) < $lightnessValue,
+    $color-neutral-300,
+    $color-neutral-900
+  );
+}

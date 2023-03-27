@@ -1,9 +1,13 @@
 @use '../abstracts/' as *;
 
 .ff-base {
-  font-family: $ff-base;
+  font-family: $font-family-base;
 }
 
-.ff-accent {
-  font-family: $ff-accent;
+.ff-accent-I {
+  font-family: $font-family-accent-I;
+}
+
+.ff-accent-II {
+  font-family: $font-family-accent-II;
 }

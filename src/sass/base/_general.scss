@@ -5,7 +5,11 @@ body {
   font-weight: $body-font-weight;
   line-height: $body-line-height;
   background-color: $body-background-color;
-  color: $color-neutral-300;
+  color: $body-text-color;
+}
+
+h1, h2, h3 {
+  line-height: 1.1;
 }
 
 #root {

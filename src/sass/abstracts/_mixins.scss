@@ -2,6 +2,7 @@
 @use "sass:math";
 @use "sass:map";
 @use "breakpoints" as *;
+@use "functions" as *;
 
 // @mixin mq($size) {
 //   $breakpoint: "";
@@ -38,3 +39,7 @@
   }
 }
 
+@mixin chooseBgClrCombo($bg) {
+  background: $bg;
+  color: getClrOfContrast($bg);
+}

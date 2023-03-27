@@ -1,7 +1,7 @@
 @use "../abstracts" as *;
 
 .section {
-  padding-block: $section-padding;
+  padding-block: $section-padding-block;
 }
 
 .mx-auto {
@@ -18,7 +18,7 @@
 }
 
 @each $space-name, $space-value in $space-sizes {
-  .m {
+  .mx {
     &-#{$space-name} {
       margin: $space-value;
     }
@@ -41,7 +41,7 @@
       margin-inline: $space-value;
     }
   }
-  .p {
+  .px {
     &-#{$space-name} {
       padding: $space-value;
     }

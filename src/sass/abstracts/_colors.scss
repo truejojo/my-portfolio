@@ -44,21 +44,21 @@ $colors: (
     700: $-clr-blue-700,
     900: $-clr-blue-900,
   ),
-  1x1: (
+  secondary-I: (
     100: $-clr-green-100,
     300: $-clr-green-300,
     500: $-clr-green-500,
     700: $-clr-green-700,
     900: $-clr-green-900,
   ),
-  1x1-task: (
+  secondary-II: (
     100: $-clr-orange-100,
     300: $-clr-orange-300,
     500: $-clr-orange-500,
     700: $-clr-orange-700,
     900: $-clr-orange-900,
   ),
-  letter: (
+  secondary-III: (
     100: $-clr-red-100,
     300: $-clr-red-300,
     500: $-clr-red-500,
@@ -80,24 +80,24 @@ $color-primary-500: var(--primary-500);
 $color-primary-700: var(--primary-700);
 $color-primary-900: var(--primary-900);
 
-$color-1x1-100: var(--1x1-100);
-$color-1x1-300: var(--1x1-300);
-$color-1x1-500: var(--1x1-500);
-$color-1x1-700: var(--1x1-700);
-$color-1x1-900: var(--1x1-900);
+$color-secondary-I-100: var(--secondary-I-100);
+$color-secondary-I-300: var(--secondary-I-300);
+$color-secondary-I-500: var(--secondary-I-500);
+$color-secondary-I-700: var(--secondary-I-700);
+$color-secondary-I-900: var(--secondary-I-900);
 
-$color-1x1-task-100: var(--1x1-task-100);
-$color-1x1-task-300: var(--1x1-task-300);
-$color-1x1-task-500: var(--1x1-task-500);
-$color-1x1-task-700: var(--1x1-task-700);
-$color-1x1-task-900: var(--1x1-task-900);
+$color-secondary-II-100: var(--secondary-II-100);
+$color-secondary-II-300: var(--secondary-II-300);
+$color-secondary-II-500: var(--secondary-II-500);
+$color-secondary-II-700: var(--secondary-II-700);
+$color-secondary-II-900: var(--secondary-II-900);
 
-$color-letter-100: var(--letter-100);
-$color-letter-300: var(--letter-300);
-$color-letter-500: var(--letter-500);
-$color-letter-700: var(--letter-700);
-$color-letter-900: var(--letter-900);
+$color-secondary-III-100: var(--secondary-III-100);
+$color-secondary-III-300: var(--secondary-III-300);
+$color-secondary-III-500: var(--secondary-III-500);
+$color-secondary-III-700: var(--secondary-III-700);
+$color-secondary-III-900: var(--secondary-III-900);
 
-$color-accent-I: var(--1x1-300);
-$color-accent-I-hover: var(--1x1-500);
-$color-accent-II: var(--1x1-task-900);
+$color-accent-I: var(--secondary-I-300);
+$color-accent-I-hover: var(--secondary-I-500);
+$color-accent-II: var(--secondary-II-900);

@@ -19,7 +19,7 @@
 
     &:is(:hover, :focus) {
       background-color: $button-1x1-background-hover;
-    color: $button-1x1-color-hover;
+      color: $button-1x1-color-hover;
     }
   }
   &[data-type="1x1-task"] {
@@ -28,7 +28,7 @@
 
     &:is(:hover, :focus) {
       background-color: $button-1x1-task-background-hover;
-    color: $button-1x1-task-color-hover;
+      color: $button-1x1-task-color-hover;
     }
   }
   &[data-type="letter"] {
@@ -37,9 +37,7 @@
 
     &:is(:hover, :focus) {
       background-color: $button-letter-background-hover;
-    color: $button-letter-color-hover;
+      color: $button-letter-color-hover;
     }
   }
-
-
 }

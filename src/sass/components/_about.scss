@@ -1,26 +1,26 @@
-@use "../abstracts/" as *;
+// @use "../abstracts/" as *;
 
-.about {
-  .person {
-    display: grid;
-    gap: 3rem;
+// .about {
+//   .person {
+//     display: grid;
+//     gap: 3rem;
 
-    @include mq(medium) {
-      grid-template-columns: 1fr auto;
-    }
-  }
+//     @include mq(medium) {
+//       grid-template-columns: 1fr auto;
+//     }
+//   }
 
-  .text {
-    display: flex;
-    align-items: center;
-  }
+//   .text {
+//     display: flex;
+//     align-items: center;
+//   }
 
-  .img {
-    font-size: 15rem;
-    margin-block: -3rem;
-  }
+//   .img {
+//     font-size: 15rem;
+//     margin-block: -3rem;
+//   }
 
-  a {
-    color: clr(accent-2, 500);
-  }
-}
+//   a {
+//     color: clr(accent-2, 500);
+//   }
+// }

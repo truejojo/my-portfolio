@@ -1,11 +1,13 @@
 @use "colors" as *;
 @use "typography" as *;
 @use "spacess" as *;
+@use "functions" as *;
 
 // Contextual
 $color-text-default-light: $color-neutral-300;
 $color-text-default-dark: $color-neutral-900;
-$color-background-default: $color-primary-500;
+// $color-background-default: $color-primary-500;
+$color-background-default: black;
 $color-text-interactive-default: $color-accent-I;
 $color-text-interactive-hover: $color-accent-I-hover;
 
@@ -19,6 +21,7 @@ $body-font-size: $font-size-400;
 $body-line-height: 1.6;
 $body-font-weight: $font-weight-default;
 $body-background-color: $color-background-default;
+$body-text-color: getClrOfContrast($body-background-color);
 
 // general
 $link-color: $color-text-interactive-default;
@@ -27,6 +30,7 @@ $link-color-hover: $color-text-interactive-hover;
 // Layout
 $grid-gap: 1.5rem;
 $flex-group-gap: 1rem;
+$flow-gap: 1rem;
 
 $section-padding-block: clamp(10rem, 12vh, 15rem);
 
@@ -34,8 +38,8 @@ $card-body-padding: $size-4;
 $card-body-padding-inside: $size-4;
 
 $container-min-margin-inline: $size-8;
+$container-max-width-small: 50em;
 $container-max-width: 60em;
-$container-max-width-narrow: 50em;
 $container-max-width-wide: 75em;
 
 $size-fluid-1: clamp($size-2, 2vw, $size-4);
@@ -55,7 +59,7 @@ $box-shadow-3: 0 $size-1 $size-4 rgb(0 0 0 / 0.15);
 $transition: ease-in-out .35s;
 
 // Buttons
-$button-font-family: $font-family-links;
+$button-font-family: $font-family-accent-I;
 $button-font-size: $font-size-300;
 $button-font-weight: $font-weight-bold;
 $button-padding-default: $size-3 $size-9; // 12px 32px
@@ -66,29 +70,40 @@ $button-justify-self: center;
 $button-transition: $transition;
 
 $button-1x1-color: $color-neutral-100;
-$button-1x1-background: $color-1x1-500;
+$button-1x1-background: $color-secondary-I-500;
 $button-1x1-color-hover: $color-neutral-100;
-$button-1x1-background-hover: $color-1x1-700;
+$button-1x1-background-hover: $color-secondary-I-700;
 
 $button-1x1-task-color: $color-neutral-100;
-$button-1x1-task-background: $color-1x1-task-500;
+$button-1x1-task-background: $color-secondary-II-500;
 $button-1x1-task-color-hover: $color-neutral-100;
-$button-1x1-task-background-hover: $color-1x1-task-700;
+$button-1x1-task-background-hover: $color-secondary-II-700;
 
 $button-letter-color: $color-neutral-100;
-$button-letter-background: $color-letter-500;
+$button-letter-background: $color-secondary-III-500;
 $button-letter-color-hover: $color-neutral-100;
-$button-letter-background-hover: $color-letter-700;
+$button-letter-background-hover: $color-secondary-III-700;
 
-// Header
+// site header
 $site-header-background-color: $color-primary-700;
 $site-header-text-color: $color-neutral-300;
 $site-header-padding: $size-8 0;
 $site-header-margin: 0;
 
-// Footer
+// site navigation
+$site-navigation-nav-text-color: $color-primary-300;
+$site-navigation-nav-text-color-hover: $color-accent-II;
+$site-navigation-nav-font-family: $font-family-accent-I;
+$site-navigation-font-size: $font-size-300;
+$site-navigation-font-weight: $font-weight-default;
+$site-navigation-letter-spacing: $letter-spacing-loose;
+
+// site footer
 $site-footer-background-color: $color-primary-900;
 $site-footer-text-color: $color-accent-II;
+$site-footer-font-family: $font-family-accent-I;
+$site-footer-nav-text-color: $color-accent-II;
+$site-footer-nav-text-color-hover: $color-primary-300;
 
 // cards
 $card-flow-spacing: $size-2;
