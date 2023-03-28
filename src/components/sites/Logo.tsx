@@ -5,9 +5,11 @@ interface ILogoProps {
 }
 
 const Logo = () => (
-  <HashLink to="/#home">
-    <span className="title | ff-accent fs-750">My Portfolio</span>
-    <span className="subtitle uppercase fs-450">Johannes Vehring</span>
-  </HashLink>
+  <div className="logo">
+    <HashLink to="/#home">
+      <span className="title">My Portfolio</span>
+      <span className="subtitle">Johannes Vehring</span>
+    </HashLink>
+  </div>
 );
 export default Logo;

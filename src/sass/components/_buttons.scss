@@ -3,6 +3,7 @@
 .button {
   display: inline-flex;
   cursor: pointer;
+  font-family: $button-font-family;
   letter-spacing: $button-letter-spacing;
   text-decoration: none;
   text-transform: uppercase;

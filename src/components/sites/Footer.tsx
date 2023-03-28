@@ -1,30 +1,14 @@
-import { NavLink } from "react-router-dom";
-import { HashLink } from "react-router-hash-link";
-import { FaGithub, FaXingSquare } from "react-icons/fa";
+import Logo from "./Logo";
+import SocialMediaNav from "./SocialMediaNav";
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className="site-footer | bg-primary-900 px-block-12">
       <div className="container" data-type="wide">
-        <HashLink to="/#home">
-          <span>My Portfolio</span>
-          <span>Johannes Vehring</span>
-        </HashLink>
-        <ul>
-          <li>
-            <NavLink to="https://github.com/truejojo" target="_blank">
-              <FaGithub />
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="https://www.xing.com/profile/Johannes_Vehring2/cv"
-              target="_blank"
-            >
-              <FaXingSquare />
-            </NavLink>
-          </li>
-        </ul>
+        <div className="flex-space-between">
+          <Logo />
+          <SocialMediaNav />
+        </div>
       </div>
     </footer>
   );

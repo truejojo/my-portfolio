@@ -21,6 +21,7 @@ h1, h2, h3 {
 
 a {
   color: $link-color;
+  transition: color $transition;
 }
 
 a:is(:hover, :focus) {

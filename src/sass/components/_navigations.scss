@@ -2,10 +2,34 @@
 
 .nav {
   a {
-    color: inherit;
+    font-family: $navigation-font-family;
+    color: $navigation-text-color;
+    font-size: $navigation-font-size;
+    font-weight: $navigation-font-weight;
+    letter-spacing: $navigation-letter-spacing;
     text-decoration: none;
     text-transform: uppercase;
     line-height: 1;
-    letter-spacing: $letter-spacing-default;
+
+    &:is(:hover, :focus) {
+      color: $navigation-text-color-hover;
+    }
+  }
+}
+
+.main-nav {
+  align-self: end;
+}
+
+.social-media-nav {
+  align-self: center;
+
+  a {
+    color: $navigation-text-color-hover;
+    font-size: $font-size-500;
+
+    &:is(:hover, :focus) {
+      color: $navigation-text-color;
+    }
   }
 }

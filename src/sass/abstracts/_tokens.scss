@@ -59,10 +59,10 @@ $box-shadow-3: 0 $size-1 $size-4 rgb(0 0 0 / 0.15);
 $text-shadow-1: 2px 2px $color-neutral-700;
 
 // Transitions
-$transition: ease-in-out .35s;
+$transition: ease-in-out 0.35s;
 
 // Buttons
-$button-font-family: $font-family-accent-I;
+$button-font-family: $font-family-accent-II;
 $button-font-size: $font-size-300;
 $button-font-weight: $font-weight-bold;
 $button-padding-default: $size-3 $size-9; // 12px 32px
@@ -93,13 +93,18 @@ $site-header-text-color: $color-neutral-300;
 $site-header-padding: $size-8 0;
 $site-header-margin: 0;
 
-// site navigation
-$site-navigation-nav-text-color: $color-primary-300;
-$site-navigation-nav-text-color-hover: $clr-accent-II;
-$site-navigation-nav-font-family: $font-family-accent-I;
-$site-navigation-font-size: $font-size-300;
-$site-navigation-font-weight: $font-weight-default;
-$site-navigation-letter-spacing: $letter-spacing-loose;
+// logo
+$logo-font-family: $font-family-accent-I;
+$logo-text-color: $color-neutral-100;
+$logo-text-color-hover: $clr-accent-I;
+
+// navigation
+$navigation-font-family: $font-family-accent-II;
+$navigation-text-color: $color-neutral-100;
+$navigation-text-color-hover: $clr-accent-I;
+$navigation-font-size: $font-size-300;
+$navigation-font-weight: $font-weight-default;
+$navigation-letter-spacing: $letter-spacing-default;
 
 // site footer
 $site-footer-background-color: $color-primary-900;

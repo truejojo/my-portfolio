@@ -1,0 +1,33 @@
+@use "../abstracts/" as *;
+
+.logo {
+  a {
+    display: grid;
+    color: $logo-text-color;
+    text-decoration: none;
+    line-height: 1.3;
+
+    &:hover {
+      color: $logo-text-color-hover;
+    }
+
+    footer & {
+      color: $logo-text-color-hover;
+
+      &:hover {
+        color: $logo-text-color;
+      }
+    }
+  }
+
+  .title {
+    font-family: $logo-font-family;
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.125rem;
+    letter-spacing: 0.22rem;
+    text-transform: uppercase;
+  }  
+}
