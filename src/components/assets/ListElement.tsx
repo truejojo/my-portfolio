@@ -1,9 +1,8 @@
-import React from 'react'
-
-const ListElement = () => {
-  return (
-    <li>ListElement</li>
-  )
+export type TListElementProps = {
+  id: number;
+  item: string;
 }
 
-export default ListElement
+const ListElement = ({ item }: TListElementProps) => <li>{item}</li>;
+
+export default ListElement;

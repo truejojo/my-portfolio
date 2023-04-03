@@ -1,6 +1,7 @@
 export const getSkills = () => {
   const skills = {
     headline: "Meine Fähigkeiten",
+    subheadline: "",
     content: [
       {
         id: 1,
