@@ -16,7 +16,7 @@
   transition: color $button-transition, background $button-transition;
   justify-self: $button-justify-self;
 
-  &[data-type="1x1"] {
+  &[data-type="index-1"] {
     background-color: $button-1x1-background;
     color: $button-1x1-color;
 
@@ -25,7 +25,7 @@
       color: $button-1x1-color-hover;
     }
   }
-  &[data-type="1x1-task"] {
+  &[data-type="index-2"] {
     background-color: $button-1x1-task-background;
     color: $button-1x1-task-color;
 
@@ -34,7 +34,7 @@
       color: $button-1x1-task-color-hover;
     }
   }
-  &[data-type="letter"] {
+  &[data-type="index-3"] {
     background-color: $button-letter-background;
     color: $button-letter-color;
 

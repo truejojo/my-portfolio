@@ -1,8 +1,8 @@
 type TMainHeadlineProps = {
-  title: string;
+  children: React.ReactNode;
 };
-const MainHeadline = ({ title }: TMainHeadlineProps) => (
-  <h1 className="title">{title}</h1>
+const MainHeadline = ({ children }: TMainHeadlineProps) => (
+  <h1 className="title">{children}</h1>
 );
 
 export default MainHeadline;

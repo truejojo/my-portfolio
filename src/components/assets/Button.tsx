@@ -1,11 +1,11 @@
 type TButtonProps = {
-  type: string;
-  text?: string;
+  dataType: string;
+  children?: React.ReactNode;
 };
 
-const Button = ({ type, text = "zum Spiel" }: TButtonProps) => (
-  <button className={`button`} data-type={type}>
-    {text}
+const Button = ({ dataType, children = "zum Spiel" }: TButtonProps) => (
+  <button className={`button`} data-type={dataType}>
+    {children}
   </button>
 );
 

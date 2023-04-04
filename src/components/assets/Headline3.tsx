@@ -1,9 +1,10 @@
 type THeadline3Props = {
-  title: string;
+  children: React.ReactNode;
+  titleColor?: string;
 };
 
-const Headline3 = ({ title }: THeadline3Props) => (
-  <h2 className="title">{title}</h2>
+const Headline3 = ({ children, titleColor = "" }: THeadline3Props) => (
+  <h3 className={`title ${titleColor}`}>{children}</h3>
 );
 
 export default Headline3;

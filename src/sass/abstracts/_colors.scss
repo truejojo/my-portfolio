@@ -44,21 +44,21 @@ $colors: (
     700: $-clr-blue-700,
     900: $-clr-blue-900,
   ),
-  secondary-I: (
+  secondary-1: (
     100: $-clr-green-100,
     300: $-clr-green-300,
     500: $-clr-green-500,
     700: $-clr-green-700,
     900: $-clr-green-900,
   ),
-  secondary-II: (
+  secondary-2: (
     100: $-clr-orange-100,
     300: $-clr-orange-300,
     500: $-clr-orange-500,
     700: $-clr-orange-700,
     900: $-clr-orange-900,
   ),
-  secondary-III: (
+  secondary-3: (
     100: $-clr-red-100,
     300: $-clr-red-300,
     500: $-clr-red-500,
@@ -80,27 +80,27 @@ $color-primary-500: var(--primary-500);
 $color-primary-700: var(--primary-700);
 $color-primary-900: var(--primary-900);
 
-$color-secondary-I-100: var(--secondary-I-100);
-$color-secondary-I-300: var(--secondary-I-300);
-$color-secondary-I-500: var(--secondary-I-500);
-$color-secondary-I-700: var(--secondary-I-700);
-$color-secondary-I-900: var(--secondary-I-900);
+$color-secondary-1-100: var(--secondary-1-100);
+$color-secondary-1-300: var(--secondary-1-300);
+$color-secondary-1-500: var(--secondary-1-500);
+$color-secondary-1-700: var(--secondary-1-700);
+$color-secondary-1-900: var(--secondary-1-900);
 
-$color-secondary-II-100: var(--secondary-II-100);
-$color-secondary-II-300: var(--secondary-II-300);
-$color-secondary-II-500: var(--secondary-II-500);
-$color-secondary-II-700: var(--secondary-II-700);
-$color-secondary-II-900: var(--secondary-II-900);
+$color-secondary-2-100: var(--secondary-2-100);
+$color-secondary-2-300: var(--secondary-2-300);
+$color-secondary-2-500: var(--secondary-2-500);
+$color-secondary-2-700: var(--secondary-2-700);
+$color-secondary-2-900: var(--secondary-2-900);
 
-$color-secondary-III-100: var(--secondary-III-100);
-$color-secondary-III-300: var(--secondary-III-300);
-$color-secondary-III-500: var(--secondary-III-500);
-$color-secondary-III-700: var(--secondary-III-700);
-$color-secondary-III-900: var(--secondary-III-900);
+$color-secondary-3-100: var(--secondary-3-100);
+$color-secondary-3-300: var(--secondary-3-300);
+$color-secondary-3-500: var(--secondary-3-500);
+$color-secondary-3-700: var(--secondary-3-700);
+$color-secondary-3-900: var(--secondary-3-900);
 
 $clr-accent-I: var(--secondary-II-500);
 $clr-accent-I-hover: var(--secondary-II-300);
 $clr-accent-II: var(--secondary-II-900);
 
-$clr-opacity-I: rgb($-clr-blue-500, .65);
-$clr-opacity-II: rgb($-clr-blue-500, .95);
+$clr-opacity-I: rgb($-clr-blue-500, 0.65);
+$clr-opacity-II: rgb($-clr-blue-500, 0.95);

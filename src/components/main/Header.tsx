@@ -1,15 +1,17 @@
+import { ContainerWide } from "../helper/Container";
+import { FlexSpaceBetween } from "../helper/Flex";
 import Logo from "./Logo";
 import MainNav from "./MainNav";
 
 const Header = () => {
   return (
     <header id="home" className="site-header | bg-primary-700 px-block-4">
-      <div className="container" data-type="wide">
-        <div className="flex-space-between">
+      <ContainerWide>
+        <FlexSpaceBetween>
           <Logo />
           <MainNav />
-        </div>
-      </div>
+        </FlexSpaceBetween>
+      </ContainerWide>
     </header>
   );
 };
