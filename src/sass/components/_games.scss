@@ -1,0 +1,33 @@
+@use "../abstracts/" as *;
+
+.games {
+  min-height: 100%;
+  background-color: $color-primary-700;
+}
+
+.game-wrapper {
+  display: grid;
+  gap: $grid-gap;
+  grid-template-areas:
+    "aside"
+    "content";
+
+  @include mq(medium) {
+    grid-template-areas: "aside content content";
+    grid-template-columns: 230px 1fr 1fr;
+    align-items: start;
+  }
+
+  .game-aside {
+    grid-area: aside;
+    text-align: center;
+
+    @include mq(medium) {
+      text-align: left;
+    }
+  }
+
+  .game-content-wrapper {
+    grid-area: content;
+  }
+}

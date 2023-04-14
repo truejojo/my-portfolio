@@ -15,6 +15,13 @@
   box-shadow: $box-shadow-1;
   transition: color $button-transition, background $button-transition;
   justify-self: $button-justify-self;
+  background-color: $button-background;
+  color: $button-color;
+
+  &:is(:hover, :focus) {
+    background-color: $button-background-hover;
+    color: $button-color-hover;
+  }
 
   &[data-type="index-1"] {
     background-color: $button-1x1-background;

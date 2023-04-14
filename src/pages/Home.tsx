@@ -44,10 +44,7 @@ const Home = () => {
         <ContainerSmall>
           <HeaderElement title={skills.headline} />
           <GridAutoFitColumns>
-            <CardWrapper
-              cardsList={skills.content}
-              bgName="bg-secondary-2"
-            />
+            <CardWrapper cardsList={skills.content} bgName="bg-secondary-2" />
           </GridAutoFitColumns>
         </ContainerSmall>
       </Section>
@@ -55,7 +52,7 @@ const Home = () => {
       <Section sectionName="about" bgNumber="700">
         <ContainerSmall>
           <div className="person">
-            <Headline2>über mich</Headline2>
+            <Headline2>Über mich</Headline2>
             <p className="text">
               Ich bin ein Familienmensch. Papa, Ehemann und leidenschaftlicher
               Programmierer 👨‍💻. Fahre gerne Fahrrad 🚲 und mag Fussball ⚽️.
@@ -74,8 +71,7 @@ const Home = () => {
             </p>
             <p>
               Im Juli 2022 habe ich eine online Zertifizierung bei{" "}
-              <ALink href="scrimba.com">Scrimba</ALink>
-              zum{" "}
+              <ALink href="scrimba.com">Scrimba</ALink> zum{" "}
               <ALink href="scrimba.com/learn/frontend">
                 Frontend Developer
               </ALink>{" "}

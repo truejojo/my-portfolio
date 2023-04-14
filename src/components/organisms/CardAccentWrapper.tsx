@@ -4,6 +4,7 @@ type TCardAccentListProps = {
   id: number;
   title: string;
   text: string;
+  linkTo: string;
 };
 
 type TCardAccentWrapperProps = {

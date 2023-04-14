@@ -1,0 +1,45 @@
+@use "../abstracts/" as *;
+
+.game-aside {
+  .list-row {
+    display: grid;
+    gap: 3px;
+    background-color: $color-secondary-1-700;
+  }
+  .row {
+    cursor: pointer;
+    background-color: $color-secondary-1-900;
+    color: $color-secondary-1-300;
+    border: none;
+    min-height: 3rem;
+    width: 100%;
+    transition: color $button-transition, background $button-transition;
+
+    &:is(:hover, :focus) {
+      background-color: rgb(black, 0.25);
+      color: $color-neutral-100;
+    }
+    
+    @include mq(medium) {
+      text-align: left;
+      text-indent: 1rem;
+    }
+  }
+  .list-type {
+    display: grid;
+    gap: 3px;
+    background-color: $color-secondary-1-900;
+  }
+  .type {
+    cursor: pointer;
+    background-color: $color-secondary-1-700;
+    color: $color-secondary-1-100;
+    text-indent: 2rem;
+    transition: color $button-transition, background $button-transition;
+
+    &:is(:hover, :focus) {
+      background-color: rgb(black, 0.25);
+      color: $color-neutral-100;
+    }
+  }
+}

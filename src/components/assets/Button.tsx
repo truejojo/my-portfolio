@@ -1,10 +1,22 @@
 type TButtonProps = {
-  dataType: string;
+  dataType?: string;
+  type?: "button" | "submit" | "reset" | undefined;
+  onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
   children?: React.ReactNode;
 };
 
-const Button = ({ dataType, children = "zum Spiel" }: TButtonProps) => (
-  <button className={`button`} data-type={dataType}>
+const Button = ({
+  dataType,
+  type = "button",
+  onClick,
+  children = "zum Spiel",
+}: TButtonProps) => (
+  <button
+    className="button"
+    type={type}
+    data-type={dataType}
+    onClick={onClick}
+  >
     {children}
   </button>
 );

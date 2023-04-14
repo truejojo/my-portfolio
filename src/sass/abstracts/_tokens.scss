@@ -65,12 +65,17 @@ $transition: ease-in-out 0.35s;
 $button-font-family: $font-family-accent-II;
 $button-font-size: $font-size-300;
 $button-font-weight: $font-weight-bold;
-$button-padding-default: $size-3 $size-9; // 12px 32px
+$button-padding-default: $size-3 $size-9;
 $button-letter-spacing: $letter-spacing-loose;
 $button-border: $border-radius;
 $button-border-radius: $border-radius;
 $button-justify-self: center;
 $button-transition: $transition;
+
+$button-color: $color-neutral-900;
+$button-background: $color-neutral-100;
+$button-color-hover: $color-neutral-900;
+$button-background-hover: $color-primary-300;
 
 $button-1x1-color: $color-neutral-100;
 $button-1x1-background: $color-secondary-1-500;
@@ -100,11 +105,13 @@ $logo-text-color-hover: $clr-accent-I;
 
 // navigation
 $navigation-font-family: $font-family-accent-II;
-$navigation-text-color: $color-neutral-100;
-$navigation-text-color-hover: $clr-accent-I;
 $navigation-font-size: $font-size-300;
 $navigation-font-weight: $font-weight-default;
 $navigation-letter-spacing: $letter-spacing-default;
+$navigation-text-color: $color-neutral-100;
+$navigation-text-color-hover: $clr-accent-I;
+
+$navigation-game-nav-color-hover: $color-primary-300;
 
 // site footer
 $site-footer-background-color: $color-primary-900;
