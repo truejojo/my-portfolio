@@ -4,7 +4,11 @@ import Button from "../components/assets/Button";
 import HeaderElement from "../components/elements/HeaderElement";
 import GameForm from "../components/assets/GameForm";
 import Section from "../components/organisms/Section";
-import GamePlayWrapper from "../components/organisms/GamePlayWrapper";
+import ToggleShowWrapper from "../components/organisms/ToggleShowWrapper";
+import useString from "../components/hooks/useString";
+import useToggle from "../components/hooks/useToggle";
+import { compareStrings } from "../utilities/output";
+import { generateRandomNumber } from "../utilities/math";
 
 const Games = () => {
   const VOWELS = ["a", "e", "i", "o", "u"];
@@ -34,16 +38,16 @@ const Games = () => {
   const CONSONANTS_MAX = CONSONANTS.length;
   const LENGTH_START = 1;
 
-  const [syllablesOutput, setSyllablesOutput] = useState("");
-  const [syllablesInput, setSyllablesInput] = useState("");
-  const [feedback, setFeedback] = useState("");
-  const [isFirst, setIsFirst] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isOutput, setIsOutput] = useState(true);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [syllablesOutput, setSyllablesOutput] = useString();
+  const [syllablesInput, setSyllablesInput] = useString();
+  const [feedback, setFeedback] = useString();
+  const [isFirst, toggleIsFirst, setIsFirst] = useToggle();
+  const [isPlaying, toggleIsPlaying, setIsPlaying] = useToggle({
+    initialState: false,
+  });
+  const [isOutput, toggleIsOutput, setIsOutput] = useToggle();
 
-  const generateRandomNumber = (randomNumber: number) =>
-    Math.floor(Math.random() * randomNumber);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const generateSyllables = (length: number) => {
     return Array.from({ length })
@@ -58,9 +62,6 @@ const Games = () => {
       .trim()
       .toUpperCase();
   };
-
-  const compareStrings = (str1: string, str2: string) =>
-    str1.trim().toUpperCase() === str2.trim().toUpperCase() ? true : false;
 
   const getFinalMessage = (turns: number) =>
     turns === 1
@@ -111,11 +112,6 @@ const Games = () => {
     setIsOutput(true);
   };
 
-  const handleCheckForNextRound = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    checkForNextRound();
-  };
-
   return (
     <Section sectionName="games-start" classNames="text-center">
       <Container>
@@ -125,23 +121,18 @@ const Games = () => {
           classNames=""
           isH1={true}
         />
-        <GamePlayWrapper>
-          <div style={{ display: isPlaying ? "block" : "none" }}>
-            <GameForm isTrue={isOutput} forTrue="grid" forFalse="none">
+        <GameForm classNames="bg-primary-900">
+          <ToggleShowWrapper isShowing={isPlaying}>
+            <ToggleShowWrapper isShowing={isOutput}>
               <p className="fs-500 letter-spacing-wide">{syllablesOutput}</p>
               <Button onClick={showUserInputField}>Ok</Button>
-            </GameForm>
-            <GameForm
-              isTrue={isOutput}
-              forTrue="none"
-              forFalse="grid"
-              onSubmit={handleCheckForNextRound}
-            >
+            </ToggleShowWrapper>
+            <ToggleShowWrapper isShowing={!isOutput}>
               <input
                 type="text"
                 value={syllablesInput.toUpperCase()}
                 onChange={(event) => setSyllablesInput(event.target.value)}
-                required
+                // required
                 ref={inputRef}
                 className="fs-500 text-center mx-auto letter-spacing-default fw-bold"
                 style={{
@@ -150,16 +141,16 @@ const Games = () => {
                   }rem)`,
                 }}
               />
-              <Button type="submit">vergleichen</Button>
-            </GameForm>
-          </div>
-          <GameForm isTrue={isPlaying} forTrue="none" forFalse="grid">
+              <Button onClick={checkForNextRound}>vergleichen</Button>
+            </ToggleShowWrapper>
+          </ToggleShowWrapper>
+          <ToggleShowWrapper isShowing={!isPlaying}>
             {feedback && <p>{feedback}</p>}
             <Button onClick={onNewGame}>
               {isFirst ? "Spiel starten" : "nochmal spielen"}
             </Button>
-          </GameForm>
-        </GamePlayWrapper>
+          </ToggleShowWrapper>
+        </GameForm>
       </Container>
     </Section>
   );

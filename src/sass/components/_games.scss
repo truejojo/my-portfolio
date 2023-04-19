@@ -9,13 +9,21 @@
   display: grid;
   gap: $grid-gap;
   grid-template-areas:
+    "header"
     "aside"
     "content";
 
   @include mq(medium) {
-    grid-template-areas: "aside content content";
+    grid-template-areas: 
+    "aside header header"
+    "aside content content";
     grid-template-columns: 230px 1fr 1fr;
+    grid-template-rows: auto 1fr;
     align-items: start;
+  }
+
+  .game-header {
+    grid-area: header;
   }
 
   .game-aside {
@@ -27,7 +35,7 @@
     }
   }
 
-  .game-content-wrapper {
+  .game-play-wrapper {
     grid-area: content;
   }
 }

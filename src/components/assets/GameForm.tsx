@@ -1,24 +1,17 @@
 import { useEffect } from "react";
 
 type TGameFormProps = {
-  isTrue: boolean;
-  forTrue: string;
-  forFalse: string;
   children: React.ReactNode;
-  onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
+  classNames?: string;
 };
-const GameForm = ({ isTrue, forTrue, forFalse, children, onSubmit }: TGameFormProps) => {
+const GameForm = ({ children, classNames }: TGameFormProps) => {
   useEffect(() => {
     document.documentElement.style.setProperty("--flow-spacer", "2.5rem");
   }, []);
 
   return (
     <form
-      style={{
-        display: isTrue ? forTrue : forFalse,
-      }}
-      className="flow"
-      onSubmit={onSubmit}
+      className={`game-play-wrapper px-12 text-center ${classNames} box-shadow-2 border-radius`}
     >
       {children}
     </form>

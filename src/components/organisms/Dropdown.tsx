@@ -1,66 +1,42 @@
-import { useState } from "react";
+import { TOpenProps } from "../../pages/games/Numbers";
 
-type TOpenProps = {
-  row: number;
-  state: boolean;
+type TMessagesProps = {
+  messages: string[][];
 };
 
-const Dropdown = () => {
-  const [open, setOpen] = useState<TOpenProps[]>(OPEN_STATES);
-  const [game, setGame] = useState({
-    row: 1,
-    type: GAME_TYPE_STARTER,
-    name: GAME_NAME_STARTER,
-  });
+type TDropdonwProps = {
+  handleOpen: (row: number) => void;
+  handleGameType: (type: string, name: string) => void;
+  numbersArray: number[];
+  instrucionsArray: TMessagesProps;
+  isPlaying: boolean;
+  title: string;
+  openRow: TOpenProps[];
+};
 
-  const handleOpen = (row: number) => {
-    setOpen((prevOpen) =>
-      prevOpen.map((prev) => {
-        if (prev.row === row) {
-          return { ...prev, state: !prev.state };
-        } else {
-          return { ...prev, state: false };
-        }
-      })
-    );
-
-    setGame((prevGame) => {
-      return {
-        ...prevGame,
-        row,
-        type: GAME_TYPE_STARTER,
-        name: GAME_NAME_STARTER,
-      };
-    });
-
-    setIsFirst(true);
-    setFeedback("");
-  };
-
-  const handleGameType = (type: string, name: string) => {
-    setGame((prevGame) => {
-      return {
-        ...prevGame,
-        type: type,
-        name: name,
-      };
-    });
-  };
-
+const Dropdown = ({
+  handleOpen,
+  handleGameType,
+  numbersArray,
+  instrucionsArray,
+  isPlaying,
+  title,
+  openRow,
+}: TDropdonwProps) => {
   return (
-    <div
+    <aside
       className="game-aside"
       style={{ pointerEvents: !isPlaying ? "auto" : "none" }}
     >
       <ul className="list-row | fs-450" role="list">
-        {NUMBERS_1_TO_10.map((row, index) => (
+        {numbersArray.map((row, index) => (
           <li key={row + index}>
             <button onClick={() => handleOpen(row)} className="row">
               {title} {row}
             </button>
-            {open[index].state && (
+            {openRow[index].state && (
               <ul role="list" className="list-type">
-                {GAME_NUMBERS_INSTRUCTINS.messages.map((message, index) => (
+                {instrucionsArray.messages.map((message, index) => (
                   <li
                     key={index}
                     onClick={() => handleGameType(message[0], message[1])}
@@ -74,7 +50,7 @@ const Dropdown = () => {
           </li>
         ))}
       </ul>
-    </div>
+    </aside>
   );
 };
 
