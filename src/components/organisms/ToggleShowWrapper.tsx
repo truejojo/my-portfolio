@@ -7,7 +7,7 @@ type TToggleShowWrapperProps = {
 
 const ToggleShowWrapper = ({children, isShowing}: TToggleShowWrapperProps) => {
   return (
-    <div style={{display: isShowing ? "grid" : "none"}}>
+    <div style={{display: isShowing ? "grid" : "none"}} className='flow'>
       {children}
     </div>
   )

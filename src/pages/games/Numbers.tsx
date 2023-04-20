@@ -57,18 +57,14 @@ const Numbers = () => {
 
   // GAME NUMBERS
   // STATES
-  const [isPlaying, toggleIsPlaying, setIsPlaying] =
-    useToggle({ initialState: false });
+  const [isPlaying, toggleIsPlaying, setIsPlaying] = useToggle({
+    initialState: false,
+  });
   const [isFirst, toggleIsFirst, setIsFirst] = useToggle();
   const [feedback, setFeedback] = useString();
-  const [
-    isShowingTask,
-    toggleIsShowingTask,
-    setIsShowingTask
-  ] = useToggle();
+  const [isShowingTask, toggleIsShowingTask, setIsShowingTask] = useToggle();
   const [message, setMessage] = useString();
-  const [userInputResult, setUserInputResult] =
-    useString();
+  const [userInputResult, setUserInputResult] = useString();
 
   const { mathRow, mathGameName } = game;
   const tasksLength = NUMBERS_1_TO_10.length;
