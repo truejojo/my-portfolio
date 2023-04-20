@@ -9,6 +9,8 @@ import useString from "../components/hooks/useString";
 import useToggle from "../components/hooks/useToggle";
 import { compareStrings } from "../utilities/output";
 import { generateRandomNumber } from "../utilities/math";
+import GameInputButton from "../components/assets/GameInputButton";
+import GameInputField from "../components/assets/GameInputField";
 
 const Games = () => {
   const VOWELS = ["a", "e", "i", "o", "u"];
@@ -48,6 +50,9 @@ const Games = () => {
   const [isOutput, toggleIsOutput, setIsOutput] = useToggle();
 
   const inputRef = useRef<HTMLInputElement>(null);
+  const inputPlayGameRef = useRef<HTMLInputElement>(null);
+  const stringOutputRef = useRef<HTMLInputElement>(null);
+  const stringInputRef = useRef<HTMLInputElement>(null);
 
   const generateSyllables = (length: number) => {
     return Array.from({ length })
@@ -121,36 +126,39 @@ const Games = () => {
           classNames=""
           isH1={true}
         />
-        <GameForm classNames="bg-primary-900">
-          <ToggleShowWrapper isShowing={isPlaying}>
-            <ToggleShowWrapper isShowing={isOutput}>
+        <ToggleShowWrapper isShowing={isPlaying}>
+          <ToggleShowWrapper isShowing={isOutput}>
+            <GameForm onSubmit={showUserInputField} classNames="bg-primary-900">
               <p className="fs-500 letter-spacing-wide">{syllablesOutput}</p>
-              <Button onClick={showUserInputField}>Ok</Button>
-            </ToggleShowWrapper>
-            <ToggleShowWrapper isShowing={!isOutput}>
-              <input
-                type="text"
+              <GameInputButton value="OK" ref={stringOutputRef} />
+            </GameForm>
+          </ToggleShowWrapper>
+          <ToggleShowWrapper isShowing={!isOutput}>
+            <GameForm onSubmit={checkForNextRound} classNames="bg-primary-900">
+              <GameInputField
+                maxLength={syllablesOutput.length + 4}
                 value={syllablesInput.toUpperCase()}
-                onChange={(event) => setSyllablesInput(event.target.value)}
-                // required
                 ref={inputRef}
-                className="fs-500 text-center mx-auto letter-spacing-default fw-bold"
-                style={{
-                  width: `calc(6.25rem + ${
-                    syllablesOutput.length * 1.5625
-                  }rem)`,
-                }}
+                onChange={(event) => setSyllablesInput(event.target.value)}
+                inputWidth={`calc(6.25rem + ${
+                  syllablesOutput.length * 1.5625
+                }rem)`}
               />
-              <Button onClick={checkForNextRound}>vergleichen</Button>
-            </ToggleShowWrapper>
+
+              <GameInputButton value="vergleichen" ref={stringInputRef} />
+            </GameForm>
           </ToggleShowWrapper>
-          <ToggleShowWrapper isShowing={!isPlaying}>
+        </ToggleShowWrapper>
+        <ToggleShowWrapper isShowing={!isPlaying}>
+          <GameForm onSubmit={onNewGame} classNames="bg-primary-900">
             {feedback && <p>{feedback}</p>}
-            <Button onClick={onNewGame}>
-              {isFirst ? "Spiel starten" : "nochmal spielen"}
-            </Button>
-          </ToggleShowWrapper>
-        </GameForm>
+
+            <GameInputButton
+              value={isFirst ? "Spiel starten" : "nochmal spielen"}
+              ref={inputPlayGameRef}
+            />
+          </GameForm>
+        </ToggleShowWrapper>
       </Container>
     </Section>
   );

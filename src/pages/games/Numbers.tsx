@@ -237,14 +237,6 @@ const Numbers = () => {
             <p>
               {mathRowTurn} * {mathRow}
             </p>
-            {/* <input
-              type="text"
-              className="fs-500 text-center mx-auto letter-spacing-default fw-bold"
-              maxLength={10}
-              value={userInputResult.toUpperCase()}
-              ref={inputRef}
-              onChange={(event) => setUserInputResult(event.target.value)}
-              /> */}
             <GameInputField
               maxLength={10}
               value={userInputResult.toUpperCase()}
