@@ -1,13 +1,15 @@
-import { useEffect } from "react";
+import React from "react";
 
 type TGameFormProps = {
   children: React.ReactNode;
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
   classNames?: string;
 };
-const GameForm = ({ children, classNames }: TGameFormProps) => {
+const GameForm = ({ children, onSubmit, classNames }: TGameFormProps) => {
   return (
     <form
-      className={`game-form px-12 text-center ${classNames} box-shadow-2 border-radius`}
+      onSubmit={onSubmit}
+      className={`game-form | flow px-12 text-center ${classNames} box-shadow-2 border-radius`}
     >
       {children}
     </form>

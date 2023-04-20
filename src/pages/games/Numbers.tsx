@@ -13,6 +13,8 @@ import GameOutput from "../../components/assets/GameOutput";
 import ToggleShowWrapper from "../../components/organisms/ToggleShowWrapper";
 import { multiplier } from "../../utilities/math";
 import { compareStrings } from "../../utilities/output";
+import GameInputButton from "../../components/assets/GameInputButton";
+import GameInputField from "../../components/assets/GameInputField";
 
 const NUMBERS_1_TO_10 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const GAME_NUMBERS_INSTRUCTINS = {
@@ -61,6 +63,7 @@ const Numbers = () => {
     initialState: false,
   });
   const [isFirst, toggleIsFirst, setIsFirst] = useToggle();
+  const [isStart, toggleIsStart, setIsStart] = useToggle();
   const [feedback, setFeedback] = useString();
   const [isShowingTask, toggleIsShowingTask, setIsShowingTask] = useToggle();
   const [message, setMessage] = useString();
@@ -75,6 +78,10 @@ const Numbers = () => {
   const mathRowTurn = NUMBERS_1_TO_10[turns];
 
   const inputRef = useRef<HTMLInputElement>(null);
+  const inputPlayGameRef = useRef<HTMLInputElement>(null);
+  const inputPresentationRef = useRef<HTMLInputElement>(null);
+  const inputPaperRef = useRef<HTMLInputElement>(null);
+  const inputPCRef = useRef<HTMLInputElement>(null);
 
   // Menu
   const handleOpen = (mathRow: number) => {
@@ -98,6 +105,7 @@ const Numbers = () => {
     });
 
     setIsFirst(true);
+    toggleIsStart();
   };
 
   const handleGameType = (mathGameType: string, mathGameName: string) => {
@@ -110,18 +118,51 @@ const Numbers = () => {
     });
 
     setIsFirst(true);
+    toggleIsStart();
   };
 
   // Game
-  const playGame = () => {
+  const handlePlayGame = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     toggleIsPlaying();
+    toggleIsStart();
     setIsFirst(false);
+  };
+  const handleToggleIsShowingTask = (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
+    event.preventDefault();
+    toggleIsShowingTask();
+  };
+  const handleToggleIsShowingTaskAndGetNewTask = (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
+    event.preventDefault();
+    incrementTurns();
+    toggleIsShowingTask();
+    setUserInputResult("");
+  };
+  const handleToggleIsShowingTaskAndIncrementTurns = (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
+    event.preventDefault();
+    incrementTurns();
+    toggleIsShowingTask();
+  };
+  const handleIncrementTurns = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    incrementTurns();
   };
 
   useEffect(() => {
     setMathTaskResult(`${multiplier(mathRowTurn, mathRow)}`);
-    inputRef.current && inputRef.current.focus();
   }, [isFirst]);
+
+  useEffect(() => {
+    inputPlayGameRef.current && inputPlayGameRef.current.focus();
+    inputPresentationRef.current && inputPresentationRef.current.focus();
+    inputPaperRef.current && inputPaperRef.current.focus();
+  }, [isStart, isFirst]);
 
   useEffect(() => {
     setMathTaskResult(`${multiplier(mathRowTurn, mathRow)}`);
@@ -132,50 +173,40 @@ const Numbers = () => {
       ),
       resetTurns(0),
       resetRights(0));
+    inputPlayGameRef.current && inputPlayGameRef.current.focus();
   }, [turns]);
 
   useEffect(() => {
+    isShowingTask
+      ? inputRef.current && inputRef.current.focus()
+      : inputPCRef.current && inputPCRef.current.focus();
+
     !isShowingTask &&
       (compareStrings(mathTaskResult, userInputResult)
         ? (setFeedback("Super, Richtig"), incrementRights())
         : setFeedback("Leider falsch"));
-
-    inputRef.current && inputRef.current.focus();
-    // document
-    //   .getElementById("user-input")
-    //   ?.addEventListener("keypress", (event) => {
-    //     event.preventDefault();
-    //     event.key === "Enter" && isShowingTask
-    //       ? toggleIsShowingTask
-    //       : () => {
-    //           incrementTurns();
-    //           toggleIsShowingTask();
-    //           resetUserInputResult();
-    //         };
-    //   });
-  }, [isShowingTask]);
+  }, [isShowingTask, isStart]);
 
   const setPresentation = () => (
-    <>
+    <GameForm onSubmit={handleIncrementTurns} classNames="bg-secondary-1-900">
       <GameOutput>
         <p>
           {mathRowTurn} * {mathRow} = {mathTaskResult}
         </p>
       </GameOutput>
-      <Button
-        onClick={incrementTurns}
-        onKeyDown={(event) => {
-          event.preventDefault();
-          event.key === "Enter" && incrementTurns();
-        }}
-      >
-        weiter
-      </Button>
-    </>
+      <GameInputButton value="Weiter" ref={inputPresentationRef} />
+    </GameForm>
   );
 
   const setPaper = () => (
-    <>
+    <GameForm
+      onSubmit={
+        isShowingTask
+          ? handleToggleIsShowingTask
+          : handleToggleIsShowingTaskAndIncrementTurns
+      }
+      classNames="bg-secondary-1-900"
+    >
       <GameOutput>
         {isShowingTask ? (
           <p>
@@ -185,45 +216,41 @@ const Numbers = () => {
           <p>{mathTaskResult}</p>
         )}
       </GameOutput>
-      <Button
-        onClick={
-          isShowingTask
-            ? toggleIsShowingTask
-            : () => {
-                incrementTurns();
-                toggleIsShowingTask();
-              }
-        }
-        onKeyDown={(event) => {
-          event.preventDefault();
-          event.key === "Enter" && isShowingTask
-            ? toggleIsShowingTask
-            : () => {
-                incrementTurns();
-                toggleIsShowingTask();
-              };
-        }}
-      >
-        {isShowingTask ? "OK" : "Weiter"}
-      </Button>
-    </>
+      <GameInputButton
+        value={isShowingTask ? "OK" : "Weiter"}
+        ref={inputPaperRef}
+      />
+    </GameForm>
   );
 
   const setPC = () => (
-    <>
+    <GameForm
+      onSubmit={
+        isShowingTask
+          ? handleToggleIsShowingTask
+          : handleToggleIsShowingTaskAndGetNewTask
+      }
+      classNames="bg-secondary-1-900"
+    >
       <GameOutput>
         {isShowingTask ? (
           <>
             <p>
               {mathRowTurn} * {mathRow}
             </p>
-            <input
-              id="user-input"
+            {/* <input
               type="text"
-              value={userInputResult.toUpperCase()}
-              onChange={(event) => setUserInputResult(event.target.value)}
-              ref={inputRef}
               className="fs-500 text-center mx-auto letter-spacing-default fw-bold"
+              maxLength={10}
+              value={userInputResult.toUpperCase()}
+              ref={inputRef}
+              onChange={(event) => setUserInputResult(event.target.value)}
+              /> */}
+            <GameInputField
+              maxLength={10}
+              value={userInputResult.toUpperCase()}
+              ref={inputRef}
+              onChange={(event) => setUserInputResult(event.target.value)}
             />
           </>
         ) : turns === tasksLength - 1 ? (
@@ -237,30 +264,11 @@ const Numbers = () => {
           <p>{feedback}</p>
         )}
       </GameOutput>
-      <Button
-        onClick={
-          isShowingTask
-            ? toggleIsShowingTask
-            : () => {
-                incrementTurns();
-                toggleIsShowingTask();
-                setUserInputResult("");
-              }
-        }
-        // onKeyDown={(event) => {
-        //   event.preventDefault();
-        //   event.key === "Enter" && isShowingTask
-        //     ? toggleIsShowingTask
-        //     : () => {
-        //         incrementTurns();
-        //         toggleIsShowingTask();
-        //         resetUserInputResult();
-        //       };
-        // }}
-      >
-        {isShowingTask ? "Vergleichen" : "Nächste Aufgabe"}
-      </Button>
-    </>
+      <GameInputButton
+        value={isShowingTask ? "Vergleichen" : "Nächste Aufgabe"}
+        ref={inputPCRef}
+      />
+    </GameForm>
   );
 
   return (
@@ -283,29 +291,30 @@ const Numbers = () => {
             openRow={openRow}
           />
 
-          <GameForm classNames="bg-secondary-1-900">
+          <div className="game-play-wrapper">
             <ToggleShowWrapper isShowing={isPlaying}>
               {mathGameName === GAME_NAME_STARTER && setPresentation()}
               {mathGameName === GAME_NAME_SECOND && setPaper()}
               {mathGameName === GAME_NAME_THIRD && setPC()}
             </ToggleShowWrapper>
             <ToggleShowWrapper isShowing={!isPlaying}>
-              {isFirst ? (
-                <p className="fs-500">{`Reihe ${mathRow} mit dem Spiel: ${mathGameName}`}</p>
-              ) : (
-                <p className="fs-500">{message}</p>
-              )}
-              <Button
-                onClick={playGame}
-                onKeyDown={(event) => {
-                  event.preventDefault();
-                  event.key === "Enter" && playGame();
-                }}
+              <GameForm
+                onSubmit={handlePlayGame}
+                classNames="bg-secondary-1-900"
               >
-                {isFirst ? "Spiel starten" : "nochmal spielen"}
-              </Button>
+                {isFirst ? (
+                  <p className="fs-500">{`Reihe ${mathRow} mit dem Spiel: ${mathGameName}`}</p>
+                ) : (
+                  <p className="fs-500">{message}</p>
+                )}
+
+                <GameInputButton
+                  value={isFirst ? "Spiel starten" : "nochmal spielen"}
+                  ref={inputPlayGameRef}
+                />
+              </GameForm>
             </ToggleShowWrapper>
-          </GameForm>
+          </div>
         </GameWrapper>
       </Container>
     </Section>
