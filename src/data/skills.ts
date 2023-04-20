@@ -9,22 +9,18 @@ export const getSkills = () => {
         items: [
           {
             id: 1,
-            item: "JS/ES6",
+            item: "JS - ES6 - TS",
           },
           {
             id: 2,
-            item: "React",
+            item: "React - ReactTS",
           },
           {
             id: 3,
-            item: "ReactTS",
-          },
-          {
-            id: 4,
             item: "HTML",
           },
           {
-            id: 5,
+            id: 4,
             item: "CSS/SCSS",
           },
         ],
@@ -48,6 +44,10 @@ export const getSkills = () => {
           {
             id: 4,
             item: "Clean Code",
+          },
+          {
+            id: 5,
+            item: "Design System",
           },
         ],
       },

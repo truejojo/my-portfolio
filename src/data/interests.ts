@@ -1,4 +1,3 @@
-
 export const getInterests = () => {
   const interests = {
     headline: "Interessen",
@@ -10,14 +9,18 @@ export const getInterests = () => {
         items: [
           {
             id: 1,
-            item: "mehr React/TS",
+            item: "mehr ReactTS",
           },
           {
             id: 2,
-            item: "Firebase",
+            item: "Remix",
           },
           {
             id: 3,
+            item: "Firebase",
+          },
+          {
+            id: 4,
             item: "Node",
           },
         ],
@@ -32,7 +35,7 @@ export const getInterests = () => {
           },
           {
             id: 2,
-            item: "TDD",
+            item: "TDD - RTL",
           },
           {
             id: 3,
