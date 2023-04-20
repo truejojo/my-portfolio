@@ -3,7 +3,6 @@ import Section from "../../components/organisms/Section";
 import { Container } from "../../components/helper/Container";
 import HeaderElement from "../../components/elements/HeaderElement";
 import GameWrapper from "../../components/organisms/GameWrapper";
-import Button from "../../components/assets/Button";
 import GameForm from "../../components/assets/GameForm";
 import Dropdown from "../../components/organisms/Dropdown";
 import useCounter from "../../components/hooks/useCounter";
