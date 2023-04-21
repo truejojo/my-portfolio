@@ -42,7 +42,7 @@ export const generateSyllables = (length: number) => {
 
 export const RETENTIVITYS = ["Silbenpaare", "Zahlenpaare", "Null & Eins"];
 
-export const RETENTIVITY_INSTRUCTINS = {
+export const RETENTIVITY_INSTRUCTIONS = {
   title: "Merkfähigkeit",
   messages: [
     ["same", "Gleich"],
@@ -52,14 +52,14 @@ export const RETENTIVITY_INSTRUCTINS = {
 };
 
 export type TOpenStatesProps = {
-  gameRow: string;
+  gameRow: number;
   state: boolean;
 };
 
 export const OPEN_STATES = Array.from({ length: RETENTIVITYS.length }).map(
   (item, index) => {
     return {
-    gameRow: RETENTIVITYS[index],
+    gameRow: index + 1,
       state: false,
     };
   }

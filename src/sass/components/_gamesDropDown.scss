@@ -4,13 +4,10 @@
   .list-row {
     display: grid;
     gap: 3px;
-    background-color: $color-secondary-1-700;
     padding: 3px;
   }
   .row {
     cursor: pointer;
-    background-color: $color-secondary-1-900;
-    color: $color-secondary-1-300;
     border: none;
     min-height: 3rem;
     width: 100%;
@@ -29,12 +26,9 @@
   .list-type {
     display: grid;
     gap: 3px;
-    background-color: $color-secondary-1-900;
   }
   .type {
     cursor: pointer;
-    background-color: $color-secondary-1-700;
-    color: $color-secondary-1-100;
     text-indent: 2rem;
     transition: color $button-transition, background $button-transition;
 

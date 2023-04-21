@@ -16,8 +16,6 @@ import GameInputButton from "../../components/assets/GameInputButton";
 import GameInputField from "../../components/assets/GameInputField";
 import GamePlayWrapper from "../../components/organisms/GamePlayWrapper";
 
-// const NUMBERS_1_TO_10 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const NUMBERS_1_TO_10 = ["1","2","3","4","5","6","7","8","9","10"];
 const GAME_NUMBERS_INSTRUCTINS = {
   title: "Reihe",
   messages: [
@@ -26,21 +24,22 @@ const GAME_NUMBERS_INSTRUCTINS = {
     ["pc", "PC"],
   ],
 };
-const OPEN_STATES = [
-  { mathRow: 1, state: false },
-  { mathRow: 2, state: false },
-  { mathRow: 3, state: false },
-  { mathRow: 4, state: false },
-  { mathRow: 5, state: false },
-  { mathRow: 6, state: false },
-  { mathRow: 7, state: false },
-  { mathRow: 8, state: false },
-  { mathRow: 9, state: false },
-  { mathRow: 10, state: false },
-];
+
+export const NUMBERS_1_TO_10 = Array.from({ length: 10 }).map((item, index) => {
+  return `${index + 1}`;
+});
+
+export const OPEN_STATES = Array.from({ length: NUMBERS_1_TO_10.length }).map(
+  (item, index) => {
+    return {
+      gameRow: index + 1,
+      state: false,
+    };
+  }
+);
 
 export type TOpenProps = {
-  mathRow: number;
+  gameRow: number;
   state: boolean;
 };
 
@@ -53,9 +52,9 @@ const Numbers = () => {
   const title = GAME_NUMBERS_INSTRUCTINS.title;
   const [openRow, setOpenRow] = useState<TOpenProps[]>(OPEN_STATES);
   const [game, setGame] = useState({
-    mathRow: 1,
-    mathGameType: GAME_TYPE_STARTER,
-    mathGameName: GAME_NAME_STARTER,
+    gameRow: 1,
+    gameType: GAME_TYPE_STARTER,
+    gameName: GAME_NAME_STARTER,
   });
 
   // GAME NUMBERS
@@ -70,7 +69,7 @@ const Numbers = () => {
   const [message, setMessage] = useString();
   const [userInputResult, setUserInputResult] = useString();
 
-  const { mathRow, mathGameName } = game;
+  const { gameRow, gameName } = game;
   const tasksLength = NUMBERS_1_TO_10.length;
 
   const [turns, incrementTurns, resetTurns] = useCounter();
@@ -85,10 +84,10 @@ const Numbers = () => {
   const inputPCRef = useRef<HTMLInputElement>(null);
 
   // Menu
-  const handleOpen = (mathRow: number) => {
+  const handleOpen = (gameRow: number) => {
     setOpenRow((prevOpenRow) =>
       prevOpenRow.map((prev) => {
-        if (prev.mathRow === mathRow) {
+        if (prev.gameRow === gameRow) {
           return { ...prev, state: !prev.state };
         } else {
           return { ...prev, state: false };
@@ -99,9 +98,9 @@ const Numbers = () => {
     setGame((prevGame) => {
       return {
         ...prevGame,
-        mathRow,
-        mathGameType: GAME_TYPE_STARTER,
-        mathGameName: GAME_NAME_STARTER,
+        gameRow,
+        gameType: GAME_TYPE_STARTER,
+        gameName: GAME_NAME_STARTER,
       };
     });
 
@@ -109,12 +108,12 @@ const Numbers = () => {
     toggleIsStart();
   };
 
-  const handleGameType = (mathGameType: string, mathGameName: string) => {
+  const handleGameType = (gameType: string, gameName: string) => {
     setGame((prevGame) => {
       return {
         ...prevGame,
-        mathGameType: mathGameType,
-        mathGameName: mathGameName,
+        gameType: gameType,
+        gameName: gameName,
       };
     });
 
@@ -161,7 +160,7 @@ const Numbers = () => {
   };
 
   useEffect(() => {
-    setMathTaskResult(`${multiplier(mathRowTurn, mathRow)}`);
+    setMathTaskResult(`${multiplier(mathRowTurn, gameRow)}`);
   }, [isFirst]);
 
   useEffect(() => {
@@ -171,7 +170,7 @@ const Numbers = () => {
   }, [isStart, isFirst]);
 
   useEffect(() => {
-    setMathTaskResult(`${multiplier(mathRowTurn, mathRow)}`);
+    setMathTaskResult(`${multiplier(mathRowTurn, gameRow)}`);
     turns === tasksLength &&
       (toggleIsPlaying(),
       setMessage(
@@ -197,7 +196,7 @@ const Numbers = () => {
     <GameForm onSubmit={handleIncrementTurns} classNames="bg-secondary-1-900">
       <GameOutput>
         <p>
-          {mathRowTurn} * {mathRow} = {mathTaskResult}
+          {mathRowTurn} * {gameRow} = {mathTaskResult}
         </p>
       </GameOutput>
       <GameInputButton value="Weiter" ref={inputPresentationRef} />
@@ -216,7 +215,7 @@ const Numbers = () => {
       <GameOutput>
         {isShowingTask ? (
           <p>
-            {mathRowTurn} * {mathRow}
+            {mathRowTurn} * {gameRow}
           </p>
         ) : (
           <p>{mathTaskResult}</p>
@@ -242,7 +241,7 @@ const Numbers = () => {
         {isShowingTask ? (
           <>
             <p>
-              {mathRowTurn} * {mathRow}
+              {mathRowTurn} * {gameRow}
             </p>
             <GameInputField
               maxLength={10}
@@ -282,18 +281,19 @@ const Numbers = () => {
           <Dropdown
             handleOpen={handleOpen}
             handleGameType={handleGameType}
-            numbersArray={NUMBERS_1_TO_10}
+            gamesArray={NUMBERS_1_TO_10}
             instrucionsArray={GAME_NUMBERS_INSTRUCTINS}
             isPlaying={isPlaying}
-            title={title}
             openRow={openRow}
+            colorNumber={1}
+            title={title}
           />
 
           <GamePlayWrapper>
             <ToggleShowWrapper isShowing={isPlaying}>
-              {mathGameName === GAME_NAME_STARTER && setPresentation()}
-              {mathGameName === GAME_NAME_SECOND && setPaper()}
-              {mathGameName === GAME_NAME_THIRD && setPC()}
+              {gameName === GAME_NAME_STARTER && setPresentation()}
+              {gameName === GAME_NAME_SECOND && setPaper()}
+              {gameName === GAME_NAME_THIRD && setPC()}
             </ToggleShowWrapper>
             <ToggleShowWrapper isShowing={!isPlaying}>
               <GameForm
@@ -302,7 +302,8 @@ const Numbers = () => {
               >
                 <GameOutput>
                   {isFirst ? (
-                    <p className="fs-500">{`Reihe ${mathRow} mit dem Spiel: ${mathGameName}`}</p>
+                    <p className="fs-500">{`${title} ${NUMBERS_1_TO_10[gameRow - 1]} mit dem Spiel: ${gameName}`}</p>
+                    // <p className="fs-500">{`Reihe ${gameRow} mit dem Spiel: ${gameName}`}</p>
                   ) : (
                     <p className="fs-500">{message}</p>
                   )}
