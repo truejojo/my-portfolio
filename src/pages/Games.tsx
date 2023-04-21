@@ -7,37 +7,12 @@ import ToggleShowWrapper from "../components/organisms/ToggleShowWrapper";
 import useString from "../components/hooks/useString";
 import useToggle from "../components/hooks/useToggle";
 import { compareStrings } from "../utilities/output";
-import { generateRandomNumber } from "../utilities/math";
 import GameInputButton from "../components/assets/GameInputButton";
 import GameInputField from "../components/assets/GameInputField";
 import GameOutput from "../components/assets/GameOutput";
+import { generateSyllables } from "../utilities/retentivity";
 
 const Games = () => {
-  const VOWELS = ["a", "e", "i", "o", "u"];
-  const CONSONANTS = [
-    "b",
-    "c",
-    "d",
-    "f",
-    "g",
-    "h",
-    "j",
-    "k",
-    "l",
-    "m",
-    "n",
-    "p",
-    "q",
-    "r",
-    "s",
-    "t",
-    "v",
-    "w",
-    "x",
-    "z",
-  ];
-  const VOWEL_MAX = VOWELS.length;
-  const CONSONANTS_MAX = CONSONANTS.length;
   const LENGTH_START = 1;
 
   const [syllablesOutput, setSyllablesOutput] = useString();
@@ -53,20 +28,6 @@ const Games = () => {
   const inputPlayGameRef = useRef<HTMLInputElement>(null);
   const stringOutputRef = useRef<HTMLInputElement>(null);
   const stringInputRef = useRef<HTMLInputElement>(null);
-
-  const generateSyllables = (length: number) => {
-    return Array.from({ length })
-      .map(() => {
-        return (
-          CONSONANTS[generateRandomNumber(CONSONANTS_MAX)] +
-          VOWELS[generateRandomNumber(VOWEL_MAX)]
-        );
-      })
-      .toString()
-      .replaceAll(",", "")
-      .trim()
-      .toUpperCase();
-  };
 
   const getFinalMessage = (turns: number) =>
     turns === 1
@@ -115,21 +76,21 @@ const Games = () => {
   useEffect(() => {
     inputPlayGameRef.current && inputPlayGameRef.current.focus();
   }, []);
-  
-  useEffect(() => {
-    isOutput && syllablesOutput && syllablesInput
-    ? compareStrings(syllablesOutput, syllablesInput)
-    ? resetForNewRound()
-    : setFinalResult()
-    : null;
-    inputRef.current && inputRef.current.focus();
-    stringOutputRef.current && stringOutputRef.current.focus();
-  }, [isOutput, syllablesOutput, syllablesInput]);
-  
+
   useEffect(() => {
     isPlaying && setUpGame();
     inputPlayGameRef.current && inputPlayGameRef.current.focus();
   }, [isPlaying]);
+
+  useEffect(() => {
+    isOutput && syllablesOutput && syllablesInput
+      ? compareStrings(syllablesOutput, syllablesInput)
+        ? resetForNewRound()
+        : setFinalResult()
+      : null;
+    inputRef.current && inputRef.current.focus();
+    stringOutputRef.current && stringOutputRef.current.focus();
+  }, [isOutput, syllablesOutput, syllablesInput]);
 
   return (
     <Section sectionName="games-start" classNames="text-center">

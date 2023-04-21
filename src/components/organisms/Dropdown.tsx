@@ -7,7 +7,8 @@ type TMessagesProps = {
 type TDropdonwProps = {
   handleOpen: (row: number) => void;
   handleGameType: (type: string, name: string) => void;
-  numbersArray: number[];
+  // numbersArray: number[];
+  numbersArray: string[];
   instrucionsArray: TMessagesProps;
   isPlaying: boolean;
   title: string;
@@ -31,7 +32,8 @@ const Dropdown = ({
       <ul className="list-row | fs-450" role="list">
         {numbersArray.map((row, index) => (
           <li key={row + index}>
-            <button onClick={() => handleOpen(row)} className="row">
+            {/* <button onClick={() => handleOpen(row)} className="row"> */}
+            <button onClick={() => handleOpen(index + 1)} className="row">
               {title} {row}
             </button>
             {openRow[index].state && (

@@ -14,8 +14,10 @@ import { multiplier } from "../../utilities/math";
 import { compareStrings } from "../../utilities/output";
 import GameInputButton from "../../components/assets/GameInputButton";
 import GameInputField from "../../components/assets/GameInputField";
+import GamePlayWrapper from "../../components/organisms/GamePlayWrapper";
 
-const NUMBERS_1_TO_10 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+// const NUMBERS_1_TO_10 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const NUMBERS_1_TO_10 = ["1","2","3","4","5","6","7","8","9","10"];
 const GAME_NUMBERS_INSTRUCTINS = {
   title: "Reihe",
   messages: [
@@ -74,7 +76,7 @@ const Numbers = () => {
   const [turns, incrementTurns, resetTurns] = useCounter();
   const [rights, incrementRights, resetRights] = useCounter();
   const [mathTaskResult, setMathTaskResult] = useString();
-  const mathRowTurn = NUMBERS_1_TO_10[turns];
+  const mathRowTurn = parseInt(NUMBERS_1_TO_10[turns]);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const inputPlayGameRef = useRef<HTMLInputElement>(null);
@@ -287,7 +289,7 @@ const Numbers = () => {
             openRow={openRow}
           />
 
-          <div className="game-play-wrapper">
+          <GamePlayWrapper>
             <ToggleShowWrapper isShowing={isPlaying}>
               {mathGameName === GAME_NAME_STARTER && setPresentation()}
               {mathGameName === GAME_NAME_SECOND && setPaper()}
@@ -312,7 +314,7 @@ const Numbers = () => {
                 />
               </GameForm>
             </ToggleShowWrapper>
-          </div>
+          </GamePlayWrapper>
         </GameWrapper>
       </Container>
     </Section>
