@@ -1,6 +1,5 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Container } from "../components/helper/Container";
-import Button from "../components/assets/Button";
 import HeaderElement from "../components/elements/HeaderElement";
 import GameForm from "../components/assets/GameForm";
 import Section from "../components/organisms/Section";
@@ -11,6 +10,7 @@ import { compareStrings } from "../utilities/output";
 import { generateRandomNumber } from "../utilities/math";
 import GameInputButton from "../components/assets/GameInputButton";
 import GameInputField from "../components/assets/GameInputField";
+import GameOutput from "../components/assets/GameOutput";
 
 const Games = () => {
   const VOWELS = ["a", "e", "i", "o", "u"];
@@ -78,14 +78,6 @@ const Games = () => {
     setIsPlaying(false);
   };
 
-  const showUserInputField = () => {
-    setIsOutput(false);
-  };
-
-  const checkForNextRound = () => {
-    setIsOutput(true);
-  };
-
   const setUpGame = () => {
     setSyllablesOutput("");
     setSyllablesInput("");
@@ -98,24 +90,46 @@ const Games = () => {
     setSyllablesOutput(generateSyllables(syllablesOutput.length / 2 + 1));
   };
 
-  useEffect(() => {
-    isOutput && syllablesOutput && syllablesInput
-      ? compareStrings(syllablesOutput, syllablesInput)
-        ? resetForNewRound()
-        : setFinalResult()
-      : null;
-    inputRef.current && inputRef.current.focus();
-  }, [isOutput, syllablesOutput, syllablesInput]);
+  const handlePlayGame = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-  useEffect(() => {
-    isPlaying && setUpGame();
-  }, [isPlaying]);
-
-  const onNewGame = () => {
     setIsFirst(false);
     setIsPlaying(true);
     setIsOutput(true);
   };
+
+  const handleShowUserInputField = (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
+    event.preventDefault();
+
+    setIsOutput(false);
+  };
+
+  const handleNextRound = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    setIsOutput(true);
+  };
+
+  useEffect(() => {
+    inputPlayGameRef.current && inputPlayGameRef.current.focus();
+  }, []);
+  
+  useEffect(() => {
+    isOutput && syllablesOutput && syllablesInput
+    ? compareStrings(syllablesOutput, syllablesInput)
+    ? resetForNewRound()
+    : setFinalResult()
+    : null;
+    inputRef.current && inputRef.current.focus();
+    stringOutputRef.current && stringOutputRef.current.focus();
+  }, [isOutput, syllablesOutput, syllablesInput]);
+  
+  useEffect(() => {
+    isPlaying && setUpGame();
+    inputPlayGameRef.current && inputPlayGameRef.current.focus();
+  }, [isPlaying]);
 
   return (
     <Section sectionName="games-start" classNames="text-center">
@@ -128,31 +142,36 @@ const Games = () => {
         />
         <ToggleShowWrapper isShowing={isPlaying}>
           <ToggleShowWrapper isShowing={isOutput}>
-            <GameForm onSubmit={showUserInputField} classNames="bg-primary-900">
-              <p className="fs-500 letter-spacing-wide">{syllablesOutput}</p>
+            <GameForm
+              onSubmit={handleShowUserInputField}
+              classNames="bg-primary-900"
+            >
+              <GameOutput>
+                <p className="fs-500 letter-spacing-wide">{syllablesOutput}</p>
+              </GameOutput>
               <GameInputButton value="OK" ref={stringOutputRef} />
             </GameForm>
           </ToggleShowWrapper>
           <ToggleShowWrapper isShowing={!isOutput}>
-            <GameForm onSubmit={checkForNextRound} classNames="bg-primary-900">
-              <GameInputField
-                maxLength={syllablesOutput.length + 4}
-                value={syllablesInput.toUpperCase()}
-                ref={inputRef}
-                onChange={(event) => setSyllablesInput(event.target.value)}
-                inputWidth={`calc(6.25rem + ${
-                  syllablesOutput.length * 1.5625
-                }rem)`}
-              />
-
+            <GameForm onSubmit={handleNextRound} classNames="bg-primary-900">
+              <GameOutput>
+                <GameInputField
+                  maxLength={syllablesOutput.length + 4}
+                  value={syllablesInput.toUpperCase()}
+                  ref={inputRef}
+                  onChange={(event) => setSyllablesInput(event.target.value)}
+                  inputWidth={`calc(6.25rem + ${
+                    syllablesOutput.length * 1.5625
+                  }rem)`}
+                />
+              </GameOutput>
               <GameInputButton value="vergleichen" ref={stringInputRef} />
             </GameForm>
           </ToggleShowWrapper>
         </ToggleShowWrapper>
         <ToggleShowWrapper isShowing={!isPlaying}>
-          <GameForm onSubmit={onNewGame} classNames="bg-primary-900">
-            {feedback && <p>{feedback}</p>}
-
+          <GameForm onSubmit={handlePlayGame} classNames="bg-primary-900">
+            <GameOutput>{feedback && <p>{feedback}</p>}</GameOutput>
             <GameInputButton
               value={isFirst ? "Spiel starten" : "nochmal spielen"}
               ref={inputPlayGameRef}

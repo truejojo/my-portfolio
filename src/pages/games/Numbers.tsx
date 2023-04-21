@@ -123,6 +123,7 @@ const Numbers = () => {
   // Game
   const handlePlayGame = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     toggleIsPlaying();
     toggleIsStart();
     setIsFirst(false);
@@ -131,12 +132,14 @@ const Numbers = () => {
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
+
     toggleIsShowingTask();
   };
   const handleToggleIsShowingTaskAndGetNewTask = (
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
+
     incrementTurns();
     toggleIsShowingTask();
     setUserInputResult("");
@@ -145,11 +148,13 @@ const Numbers = () => {
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
+
     incrementTurns();
     toggleIsShowingTask();
   };
   const handleIncrementTurns = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     incrementTurns();
   };
 
@@ -293,11 +298,13 @@ const Numbers = () => {
                 onSubmit={handlePlayGame}
                 classNames="bg-secondary-1-900"
               >
-                {isFirst ? (
-                  <p className="fs-500">{`Reihe ${mathRow} mit dem Spiel: ${mathGameName}`}</p>
-                ) : (
-                  <p className="fs-500">{message}</p>
-                )}
+                <GameOutput>
+                  {isFirst ? (
+                    <p className="fs-500">{`Reihe ${mathRow} mit dem Spiel: ${mathGameName}`}</p>
+                  ) : (
+                    <p className="fs-500">{message}</p>
+                  )}
+                </GameOutput>
 
                 <GameInputButton
                   value={isFirst ? "Spiel starten" : "nochmal spielen"}
