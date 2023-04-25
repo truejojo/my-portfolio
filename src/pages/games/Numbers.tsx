@@ -70,7 +70,7 @@ const Numbers = () => {
   const [userInputResult, setUserInputResult] = useString();
 
   const { gameRow, gameName } = game;
-  const tasksLength = NUMBERS_1_TO_10.length;
+  const [tasksLength, setTaskLength] = useState(NUMBERS_1_TO_10.length);
 
   const [turns, incrementTurns, resetTurns] = useCounter();
   const [rights, incrementRights, resetRights] = useCounter();
@@ -124,38 +124,37 @@ const Numbers = () => {
   // Game
   const handlePlayGame = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     toggleIsPlaying();
     toggleIsStart();
     setIsFirst(false);
   };
+
   const handleToggleIsShowingTask = (
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
-
     toggleIsShowingTask();
   };
+
   const handleToggleIsShowingTaskAndGetNewTask = (
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
-
     incrementTurns();
     toggleIsShowingTask();
     setUserInputResult("");
   };
+
   const handleToggleIsShowingTaskAndIncrementTurns = (
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
-
     incrementTurns();
     toggleIsShowingTask();
   };
+  
   const handleIncrementTurns = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     incrementTurns();
   };
 
@@ -303,7 +302,6 @@ const Numbers = () => {
                 <GameOutput>
                   {isFirst ? (
                     <p className="fs-500">{`${title} ${NUMBERS_1_TO_10[gameRow - 1]} mit dem Spiel: ${gameName}`}</p>
-                    // <p className="fs-500">{`Reihe ${gameRow} mit dem Spiel: ${gameName}`}</p>
                   ) : (
                     <p className="fs-500">{message}</p>
                   )}
