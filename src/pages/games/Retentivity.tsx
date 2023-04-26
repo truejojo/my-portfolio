@@ -140,19 +140,23 @@ const Retentivity = () => {
 
   useEffect(() => {
     compareStrings(taskOutput, userInputResult)
-      ? (gameName === GAME_NAME_STARTER &&
+      ? (
+        gameName === GAME_NAME_STARTER &&
           setTaskOutput(taskOutput + generateOutput(gameRow, 1)),
         gameName === GAME_NAME_SECOND &&
           setTaskOutput(generateOutput(gameRow, turns)),
         setUserInputResult(""),
-        incrementRights())
-      : (setMessage(
+        incrementRights()
+      )
+      : (
+        setMessage(
           rights > 1
             ? `Du hast Dir ${rights} Silbenpaare merken können`
             : `Upps, was ist denn da schief gelaufen?`
         ),
         setIsPlaying(false),
-        resetTurns(TASK_LENGTH_START));
+        resetTurns(TASK_LENGTH_START)
+      );
   }, [turns]);
 
   useEffect(() => {
