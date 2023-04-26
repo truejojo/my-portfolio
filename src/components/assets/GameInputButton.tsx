@@ -1,13 +1,12 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 
 type TGameInputButtonProps = {
   value: string;
-  // ref: React.RefObject<HTMLInputElement>;
 };
 
 const GameInputButton = forwardRef<HTMLInputElement, TGameInputButtonProps>(
   (props, ref) => (
-    <input className="button" type="submit" value={props.value} ref={ref} />
+    <input className="button | fs-400" type="submit" value={props.value} ref={ref} />
   )
 );
 

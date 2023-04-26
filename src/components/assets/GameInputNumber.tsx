@@ -1,5 +1,3 @@
-import React from "react";
-
 type TGameInputNumberProps = {
   idNumber: string;
   min: string;
@@ -28,6 +26,7 @@ const GameInputNumber = ({
         max={max}
         value={value}
         onChange={(event) => onChange(parseInt(event.target.value))}
+        className="fs-450 px-inline-2 mx-left-4"
       />
     </>
   );
