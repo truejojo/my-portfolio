@@ -15,33 +15,8 @@ import { compareStrings } from "../../utilities/output";
 import GameInputButton from "../../components/assets/GameInputButton";
 import GameInputField from "../../components/assets/GameInputField";
 import GamePlayWrapper from "../../components/organisms/GamePlayWrapper";
-
-const GAME_NUMBERS_INSTRUCTINS = {
-  title: "Reihe",
-  messages: [
-    ["presentation", "Präsentation"],
-    ["paper", "Papier"],
-    ["pc", "PC"],
-  ],
-};
-
-export const NUMBERS_1_TO_10 = Array.from({ length: 10 }).map((item, index) => {
-  return `${index + 1}`;
-});
-
-export const OPEN_STATES = Array.from({ length: NUMBERS_1_TO_10.length }).map(
-  (item, index) => {
-    return {
-      gameRow: index + 1,
-      state: false,
-    };
-  }
-);
-
-export type TOpenProps = {
-  gameRow: number;
-  state: boolean;
-};
+import { GAME_NUMBERS_INSTRUCTINS, NUMBERS_1_TO_10, OPEN_STATES } from "../../utilities/numbers";
+import { TOpenProps } from "../../utilities/types";
 
 const Numbers = () => {
   // DROPDOWN MENU

@@ -7,7 +7,6 @@ import {
   OPEN_STATES,
   RETENTIVITYS,
   RETENTIVITY_INSTRUCTIONS,
-  TOpenStatesProps,
   generateOutput,
 } from "../../utilities/retentivity";
 import { useEffect, useRef, useState } from "react";
@@ -22,6 +21,8 @@ import useString from "../../components/hooks/useString";
 import GameInputField from "../../components/assets/GameInputField";
 import useCounter from "../../components/hooks/useCounter";
 import { compareStrings } from "../../utilities/output";
+import GameTaskOutput from "../../components/assets/GameTaskOutput";
+import { TOpenProps } from "../../utilities/types";
 
 const Retentivity = () => {
   const GAME_TYPE_STARTER = RETENTIVITY_INSTRUCTIONS.messages[0][0];
@@ -30,7 +31,7 @@ const Retentivity = () => {
   const GAME_NAME_THIRD = RETENTIVITY_INSTRUCTIONS.messages[2][1];
   const TITLE = RETENTIVITY_INSTRUCTIONS.title;
   const GAME_RETENTIVITY_LENGTH_STARTER = 2;
-  const [openRow, setOpenRow] = useState<TOpenStatesProps[]>(OPEN_STATES);
+  const [openRow, setOpenRow] = useState<TOpenProps[]>(OPEN_STATES);
   const [game, setGame] = useState({
     gameRow: 1,
     gameType: GAME_TYPE_STARTER,
@@ -221,7 +222,7 @@ const Retentivity = () => {
         <GameOutput>
           {isShowingTask && (
             <>
-              <p>{taskOutput}</p>
+              <GameTaskOutput task={taskOutput} />
               <GameInputButton value="Ok" ref={inputUserRef} />
             </>
           )}
@@ -237,6 +238,7 @@ const Retentivity = () => {
                 value={userInputResult.toUpperCase()}
                 ref={inputRef}
                 onChange={(event) => setUserInputResult(event.target.value)}
+                inputWidth="100%"
               />
               <GameInputButton value="vergleichen" ref={inputUserRef} />
             </>

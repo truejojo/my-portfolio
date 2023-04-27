@@ -1,3 +1,4 @@
+import { NUMBERS_1_TO_10, ZEROS_AND_ONES } from "./numbers";
 import { generateRandomNumber } from "./math";
 
 const VOWELS = ["a", "e", "i", "o", "u"];
@@ -22,12 +23,10 @@ const CONSONANTS = [
   "x",
   "z",
 ];
-const NUMBERS_1_TO_10 = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-const ZEROS_AND_ONES = ["0", "1"];
 
 export const generateOutput = (gameRow: number, length: number) => {
   const game = RETENTIVITYS[gameRow - 1];
-  
+
   switch (game) {
     case RETENTIVITYS[0]:
       return generateSyllables(length);
@@ -91,11 +90,6 @@ export const RETENTIVITY_INSTRUCTIONS = {
     ["new", "Neu"],
     ["stm", "KZMF"],
   ],
-};
-
-export type TOpenStatesProps = {
-  gameRow: number;
-  state: boolean;
 };
 
 export const OPEN_STATES = Array.from({ length: RETENTIVITYS.length }).map(
