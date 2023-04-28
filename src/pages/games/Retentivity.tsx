@@ -7,7 +7,7 @@ import {
   OPEN_STATES,
   RETENTIVITYS,
   RETENTIVITY_INSTRUCTIONS,
-  generateOutput,
+  generateRetentivityOutput,
 } from "../../utilities/retentivity";
 import { useEffect, useRef, useState } from "react";
 import useToggle from "../../components/hooks/useToggle";
@@ -146,8 +146,10 @@ const Retentivity = () => {
 
   useEffect(() => {
     gameName === GAME_NAME_THIRD
-      ? setTaskOutput(generateOutput(gameRow, syllablesLength))
-      : setTaskOutput(generateOutput(gameRow, GAME_RETENTIVITY_LENGTH_STARTER));
+      ? setTaskOutput(generateRetentivityOutput(gameRow, syllablesLength))
+      : setTaskOutput(
+          generateRetentivityOutput(gameRow, GAME_RETENTIVITY_LENGTH_STARTER)
+        );
 
     inputPlayGameRef.current && inputPlayGameRef.current.focus();
     inputUserRef.current && inputUserRef.current.focus();
@@ -167,7 +169,7 @@ const Retentivity = () => {
 
   useEffect(() => {
     setUserInputResult("");
-    setTaskOutput(generateOutput(gameRow, syllablesLength));
+    setTaskOutput(generateRetentivityOutput(gameRow, syllablesLength));
 
     inputUserRef.current && inputUserRef.current.focus();
   }, [isShowingFeedback]);
@@ -186,10 +188,13 @@ const Retentivity = () => {
     ) {
       compareStrings(taskOutput, userInputResult)
         ? (gameName === GAME_NAME_STARTER &&
-            setTaskOutput(taskOutput + generateOutput(gameRow, 1)),
+            setTaskOutput(taskOutput + generateRetentivityOutput(gameRow, 1)),
           gameName === GAME_NAME_SECOND &&
             setTaskOutput(
-              generateOutput(gameRow, turns + GAME_RETENTIVITY_LENGTH_STARTER)
+              generateRetentivityOutput(
+                gameRow,
+                turns + GAME_RETENTIVITY_LENGTH_STARTER
+              )
             ),
           incrementCorrect(),
           setUserInputResult(""))
@@ -257,14 +262,14 @@ const Retentivity = () => {
 
   return (
     <Section
-      sectionName="letters"
+      sectionName="retentivity"
       classNames="games | text-center clr-secondary-3-300"
     >
       <Container>
         <GameWrapper>
           <HeaderElement
-            title="Buchstaben"
-            subTitle="Buchstaben oder Alphabet, worauf hast Du lust zu üben?"
+            title="Merkfähigkeit"
+            subTitle="Zum üben und verbessern der Kurz-Zeit-Merkfähigkeit."
             classNames="game-header | mx-bottom-2"
             isH1={true}
           />
@@ -283,6 +288,7 @@ const Retentivity = () => {
             <ToggleShowWrapper isShowing={isPlaying}>
               {gameShortTimeMemory()}
             </ToggleShowWrapper>
+            
             <ToggleShowWrapper isShowing={!isPlaying}>
               <GameForm
                 onSubmit={handlePlayGame}

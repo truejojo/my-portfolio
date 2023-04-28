@@ -31,6 +31,7 @@ const Numbers = () => {
     gameType: GAME_TYPE_STARTER,
     gameName: GAME_NAME_STARTER,
   });
+  const { gameRow, gameName } = game;
 
   // GAME NUMBERS
   // STATES
@@ -38,18 +39,21 @@ const Numbers = () => {
     initialState: false,
   });
   const [isFirst, toggleIsFirst, setIsFirst] = useToggle();
-  const [isStart, toggleIsStart, setIsStart] = useToggle();
-  const [feedback, setFeedback] = useString();
-  const [isShowingTask, toggleIsShowingTask, setIsShowingTask] = useToggle();
-  const [message, setMessage] = useString();
-  const [userInputResult, setUserInputResult] = useString();
+  const [isMenuActive, toggleIsMenuActive, setIsMenuActive] = useToggle();
 
-  const { gameRow, gameName } = game;
+  const [taskOutput, setTaskOutput] = useString();
+  const [userInputResult, setUserInputResult] = useString();
+  
+  const [isShowingTask, toggleIsShowingTask, setIsShowingTask] = useToggle();
+
+  const [feedback, setFeedback] = useString();
+  const [message, setMessage] = useString();  
+  
   const [tasksLength, setTaskLength] = useState(NUMBERS_1_TO_10.length);
 
+  const [correct, incrementCorrect, resetCorrect] = useCounter();
   const [turns, incrementTurns, resetTurns] = useCounter();
-  const [rights, incrementRights, resetRights] = useCounter();
-  const [mathTaskResult, setMathTaskResult] = useString();
+
   const mathRowTurn = parseInt(NUMBERS_1_TO_10[turns]);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -80,7 +84,7 @@ const Numbers = () => {
     });
 
     setIsFirst(true);
-    toggleIsStart();
+    toggleIsMenuActive();
   };
 
   const handleGameType = (gameType: string, gameName: string) => {
@@ -93,15 +97,15 @@ const Numbers = () => {
     });
 
     setIsFirst(true);
-    toggleIsStart();
+    toggleIsMenuActive();
   };
 
   // Game
   const handlePlayGame = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    toggleIsPlaying();
-    toggleIsStart();
     setIsFirst(false);
+    toggleIsPlaying();
+    toggleIsMenuActive();
   };
 
   const handleToggleIsShowingTask = (
@@ -134,24 +138,24 @@ const Numbers = () => {
   };
 
   useEffect(() => {
-    setMathTaskResult(`${multiplier(mathRowTurn, gameRow)}`);
+    setTaskOutput(`${multiplier(mathRowTurn, gameRow)}`);
   }, [isFirst]);
 
   useEffect(() => {
     inputPlayGameRef.current && inputPlayGameRef.current.focus();
     inputPresentationRef.current && inputPresentationRef.current.focus();
     inputPaperRef.current && inputPaperRef.current.focus();
-  }, [isStart, isFirst]);
+  }, [isMenuActive, isFirst]);
 
   useEffect(() => {
-    setMathTaskResult(`${multiplier(mathRowTurn, gameRow)}`);
+    setTaskOutput(`${multiplier(mathRowTurn, gameRow)}`);
     turns === tasksLength &&
       (toggleIsPlaying(),
       setMessage(
         `Super - geschafft. Nochmal spielen oder such Dir was anderes aus`
       ),
       resetTurns(0),
-      resetRights(0));
+      resetCorrect(0));
     inputPlayGameRef.current && inputPlayGameRef.current.focus();
   }, [turns]);
 
@@ -161,16 +165,16 @@ const Numbers = () => {
       : inputPCRef.current && inputPCRef.current.focus();
 
     !isShowingTask &&
-      (compareStrings(mathTaskResult, userInputResult)
-        ? (setFeedback("Super, Richtig"), incrementRights())
+      (compareStrings(taskOutput, userInputResult)
+        ? (setFeedback("Super, Richtig"), incrementCorrect())
         : setFeedback("Leider falsch"));
-  }, [isShowingTask, isStart]);
+  }, [isShowingTask, isMenuActive]);
 
   const setPresentation = () => (
     <GameForm onSubmit={handleIncrementTurns} classNames="bg-secondary-1-900">
       <GameOutput>
         <p>
-          {mathRowTurn} * {gameRow} = {mathTaskResult}
+          {mathRowTurn} * {gameRow} = {taskOutput}
         </p>
       </GameOutput>
       <GameInputButton value="Weiter" ref={inputPresentationRef} />
@@ -192,7 +196,7 @@ const Numbers = () => {
             {mathRowTurn} * {gameRow}
           </p>
         ) : (
-          <p>{mathTaskResult}</p>
+          <p>{taskOutput}</p>
         )}
       </GameOutput>
       <GameInputButton
@@ -228,7 +232,7 @@ const Numbers = () => {
           <>
             <p>{feedback}</p>
             <p>
-              Du hast {rights} von {tasksLength} richtig.
+              Du hast {correct} von {tasksLength} richtig.
             </p>
           </>
         ) : (

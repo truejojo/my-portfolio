@@ -12,7 +12,7 @@ import GameInputField from "../components/assets/GameInputField";
 import GameOutput from "../components/assets/GameOutput";
 import {
   RETENTIVITY_INSTRUCTIONS,
-  generateOutput,
+  generateRetentivityOutput,
 } from "../utilities/retentivity";
 import GamePlayWrapper from "../components/organisms/GamePlayWrapper";
 import useCounter from "../components/hooks/useCounter";
@@ -21,7 +21,7 @@ const Games = () => {
   const TASK_LENGTH_START = 1;
   const GAME_TYPE_STARTER = RETENTIVITY_INSTRUCTIONS.messages[0][0];
   const GAME_NAME_STARTER = RETENTIVITY_INSTRUCTIONS.messages[0][1];
-  const [{gameRow}, setGame] = useState({
+  const [{ gameRow }, setGame] = useState({
     gameRow: 1,
     gameType: GAME_TYPE_STARTER,
     gameName: GAME_NAME_STARTER,
@@ -70,13 +70,13 @@ const Games = () => {
   };
 
   useEffect(() => {
-    setTaskOutput(generateOutput(gameRow, turns));
+    setTaskOutput(generateRetentivityOutput(gameRow, turns));
     inputPlayGameRef.current && inputPlayGameRef.current.focus();
   }, [isFirst, isPlaying]);
 
   useEffect(() => {
     compareStrings(taskOutput, userInputResult)
-      ? (setTaskOutput(generateOutput(gameRow, turns)),
+      ? (setTaskOutput(generateRetentivityOutput(gameRow, turns)),
         setUserInputResult(""),
         incrementRights())
       : (setMessage(
@@ -86,8 +86,7 @@ const Games = () => {
         ),
         setIsPlaying(false),
         resetTurns(TASK_LENGTH_START),
-        setIsStart(true)
-        );
+        setIsStart(true));
   }, [turns]);
 
   useEffect(() => {

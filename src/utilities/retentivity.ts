@@ -24,7 +24,7 @@ const CONSONANTS = [
   "z",
 ];
 
-export const generateOutput = (gameRow: number, length: number) => {
+export const generateRetentivityOutput = (gameRow: number, length: number) => {
   const game = RETENTIVITYS[gameRow - 1];
 
   switch (game) {
