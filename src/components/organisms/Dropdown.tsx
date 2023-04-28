@@ -1,4 +1,4 @@
-import { TOpenProps } from "../../pages/games/Numbers";
+import { TOpenProps } from "../../utilities/types";
 
 type TMessagesProps = {
   messages: string[][];
