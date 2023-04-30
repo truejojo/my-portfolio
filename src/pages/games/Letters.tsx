@@ -10,7 +10,6 @@ import {
   OPEN_STATES,
   generateLettersOutput,
 } from "../../utilities/letters";
-import { TOpenProps } from "../../utilities/types";
 import useToggle from "../../components/hooks/useToggle";
 import GamePlayWrapper from "../../components/organisms/GamePlayWrapper";
 import ToggleShowWrapper from "../../components/organisms/ToggleShowWrapper";
@@ -22,39 +21,37 @@ import useCounter from "../../components/hooks/useCounter";
 import GameTaskOutput from "../../components/assets/GameTaskOutput";
 import GameInputField from "../../components/assets/GameInputField";
 import { compareStrings } from "../../utilities/output";
+import useDropdown from "../../components/hooks/useDropdown";
 
 const Letters = () => {
-  // Start - TODO - make only
   const GAME_TYPE_STARTER = LETTERS_INSTRUCTIONS.messages[0][0];
   const GAME_NAME_STARTER = LETTERS_INSTRUCTIONS.messages[0][1];
   const GAME_NAME_SECOND = LETTERS_INSTRUCTIONS.messages[1][1];
   const GAME_NAME_THIRD = LETTERS_INSTRUCTIONS.messages[2][1];
   const TITLE = LETTERS_INSTRUCTIONS.title;
-  const [openRow, setOpenRow] = useState<TOpenProps[]>(OPEN_STATES);
-  const [game, setGame] = useState({
-    gameRow: 1,
-    gameType: GAME_TYPE_STARTER,
-    gameName: GAME_NAME_STARTER,
-  });
-  const { gameRow, gameName } = game;
+  const [
+    gameRow,
+    gameName,
+    isFirst,
+    toggleIsFirst,
+    setIsFirst,
+    isMenuActive,
+    toggleIsMenuActive,
+    setIsMenuActive,
+    handleOpen,
+    handleGameType,
+    openRow
+  ] = useDropdown({OPEN_STATES, GAME_TYPE_STARTER, GAME_NAME_STARTER});
 
   const [isPlaying, toggleIsPlaying, setIsPlaying] = useToggle({
     initialState: false,
   });
-  const [isFirst, toggleIsFirst, setIsFirst] = useToggle();
-  const [isMenuActive, toggleIsMenuActive, setIsMenuActive] = useToggle();
-  // End - TODO - make only
   const [currentLetters, setCurrentLetters] = useState<string[]>([]);
 
   const [taskOutput, setTaskOutput] = useString();
   const [userInputResult, setUserInputResult] = useString();
 
   const [isShowingTask, toggleIsShowingTask, setIsShowingTask] = useToggle();
-  const [isShowingInput, toggleIsShowingInput, setIsShowingInput] = useToggle({
-    initialState: false,
-  });
-  const [isShowingFeedback, toggleIsShowingFeedback, setIsShowingFeedback] =
-    useToggle({ initialState: false });
 
   const [feedback, setFeedback] = useString();
   const [message, setMessage] = useString();
@@ -62,55 +59,15 @@ const Letters = () => {
   const [correct, incrementCorrect, resetCorrect] = useCounter();
   const [turns, incrementTurns, resetTurns] = useCounter();
 
+  const [isShow, setIsShow] = useState(true);
+
   // Refs
   const inputPlayGameRef = useRef<HTMLInputElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const inputUserRef = useRef<HTMLInputElement>(null);
-
-  const [isShow, setIsShow] = useState(true);
   const timeoutRef = useRef<number | undefined>(undefined);
 
-  // Start - TODO - make only
-  const handleOpen = (gameRow: number) => {
-    setOpenRow((prevOpenRow) =>
-      prevOpenRow.map((prev) => {
-        if (prev.gameRow === gameRow) {
-          return { ...prev, state: !prev.state };
-        } else {
-          return { ...prev, state: false };
-        }
-      })
-    );
-    setGame((prevGame) => {
-      return {
-        ...prevGame,
-        gameRow,
-        gameType: GAME_TYPE_STARTER,
-        gameName: GAME_NAME_STARTER,
-      };
-    });
-    setIsFirst(true);
-    toggleIsMenuActive();
-  };
-  const handleGameType = (gameType: string, gameName: string) => {
-    setGame((prevGame) => {
-      return {
-        ...prevGame,
-        gameType: gameType,
-        gameName: gameName,
-      };
-    });
-    setIsFirst(true);
-    toggleIsMenuActive();
-  };
-  // End - TODO - make only
-
-  /*******************************************************
-   ********* Game
-   *******************************************************/
-  console.log(`taskOutput: ${taskOutput}`);
-  console.log(`userInputResult: ${userInputResult}`);
-
+  /* Game */
   const handlePlayGame = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsFirst(false);
@@ -137,18 +94,6 @@ const Letters = () => {
     toggleIsShowingTask();
     setIsShow(true);
     incrementTurns();
-  };
-
-  // Input
-  const handleIsShwoingInput = (event: React.FormEvent<HTMLElement>) => {
-    event.preventDefault();
-    toggleIsShowingTask();
-  };
-  const handleIsShowingFeedback = (event: React.FormEvent<HTMLElement>) => {
-    event.preventDefault();
-    toggleIsShowingTask();
-    setIsShow(true);
-    incrementTurns();
     setUserInputResult("");
   };
 
@@ -156,7 +101,7 @@ const Letters = () => {
     setCurrentLetters(generateLettersOutput(gameRow));
     setTaskOutput(currentLetters[turns]);
 
-    gameName === GAME_NAME_SECOND || gameName === GAME_NAME_THIRD &&
+    (gameName === GAME_NAME_SECOND || gameName === GAME_NAME_THIRD) &&
       (timeoutRef.current = setTimeout(() => {
         setIsShow(false);
       }, 2000));
@@ -176,15 +121,15 @@ const Letters = () => {
 
     inputUserRef.current && inputUserRef.current.focus();
     inputRef.current && inputRef.current.focus();
-    
+
     return () => clearInterval(timeoutRef.current);
   }, [isShowingTask, isShow]);
-  
-  useEffect(() => {    
+
+  useEffect(() => {
     gameName === GAME_NAME_THIRD && compareStrings(taskOutput, userInputResult)
-    ? (incrementCorrect(), setFeedback("Richtig"))
-    : setFeedback("falsch");
-    
+      ? (incrementCorrect(), setFeedback("Richtig"))
+      : setFeedback("falsch");
+
     inputUserRef.current && inputUserRef.current.focus();
   }, [isShowingTask]);
 
@@ -192,15 +137,22 @@ const Letters = () => {
     setTaskOutput(currentLetters[turns]);
 
     turns === currentLetters.length &&
-      (setIsPlaying(false),
+      (gameName === GAME_NAME_THIRD
+        ? setMessage(
+            `Du hast ${correct} von ${
+              currentLetters.length
+            } richtig gemacht! Super, das waren die Buchstaben ${
+              LETTERS_SPLIT[gameRow - 1]
+            }. Nochmal spielen oder was anderes?`
+          )
+        : setMessage(
+            `Super, das waren die Buchstaben ${
+              LETTERS_SPLIT[gameRow - 1]
+            }. Nochmal spielen oder was anderes?`
+          ),
+      setIsPlaying(false),
       resetTurns(0),
-      resetCorrect(0),
-      //  setIsShow(true),
-      setMessage(
-        `Super, das waren die Buchstaben ${
-          LETTERS_SPLIT[gameRow - 1]
-        }. Nochmal spielen oder was anderes?`
-      ));
+      resetCorrect(0));
   }, [turns]);
 
   const gameLettersPresentation = () => (
@@ -214,7 +166,7 @@ const Letters = () => {
     </GameForm>
   );
 
-  const gameLettersPaper = () => (
+  const gameLetters = () => (
     <GameForm
       onSubmit={isShowingTask ? handleIsShowTask : handleIsShowResult}
       classNames="bg-secondary-2-700"
@@ -224,9 +176,16 @@ const Letters = () => {
           <>
             {isShow ? (
               <GameTaskOutput task={taskOutput} />
-            ) : (
+            ) : gameName === GAME_NAME_SECOND ? (
               <p>Schreibe den Buchstaben selber</p>
-            )}
+            ) : gameName === GAME_NAME_THIRD ? (
+              <GameInputField
+                maxLength={taskOutput.length + 4}
+                value={userInputResult.toUpperCase()}
+                ref={inputRef}
+                onChange={(event) => setUserInputResult(event.target.value)}
+              />
+            ) : null}
             {!isShow && (
               <GameInputButton value="vergleichen" ref={inputUserRef} />
             )}
@@ -234,99 +193,16 @@ const Letters = () => {
         )}
         {!isShowingTask && (
           <>
-            <GameTaskOutput task={taskOutput} />
+            {gameName === GAME_NAME_SECOND && (
+              <GameTaskOutput task={taskOutput} />
+            )}
+            {gameName === GAME_NAME_THIRD && <p>{feedback}</p>}
             <GameInputButton value="nächster buchstabe" ref={inputUserRef} />
           </>
         )}
       </GameOutput>
     </GameForm>
   );
-
-  const gameLettersInput = () => (
-    <>
-      <GameForm
-        onSubmit={
-          isShowingTask ? handleIsShwoingInput : handleIsShowingFeedback
-        }
-        classNames="bg-secondary-2-700"
-      >
-        <GameOutput>
-          {isShowingTask && (
-            <>
-              {isShow ? (
-                <GameTaskOutput task={taskOutput} />
-              ) : (
-                <GameInputField
-                  maxLength={taskOutput.length + 4}
-                  value={userInputResult.toUpperCase()}
-                  ref={inputRef}
-                  onChange={(event) => setUserInputResult(event.target.value)}
-                />
-              )}
-              {!isShow && (
-                <GameInputButton value="vergleichen" ref={inputUserRef} />
-              )}
-            </>
-          )}
-          {!isShowingTask && (
-            <>
-              <p>{feedback}</p>
-              <GameInputButton value="nächster buchstabe" ref={inputUserRef} />
-            </>
-          )}
-        </GameOutput>
-      </GameForm>
-    </>
-  );
-  // const gameLetters = () => (
-  //   <>
-  //     <GameForm
-  //       onSubmit={
-  //         gameName === GAME_NAME_THIRD
-  //           ? isShowingTask
-  //             ? handleIsShowingTask
-  //             : isShowingInput
-  //             ? handleIsShwoingInput
-  //             : handleIsShowingFeedback
-  //           : isShowingTask
-  //           ? handleIsShowingTask
-  //           : handleIsShwoingInput
-  //       }
-  //       classNames="bg-secondary-2-700"
-  //     >
-  //       <GameOutput>
-  //         {isShowingTask && (
-  //           <>
-  //             <GameTaskOutput task={taskOutput} />
-  //             <GameInputButton
-  //               value={isShow ? "OK" : "nächster buchstabe"}
-  //               ref={inputUserRef}
-  //             />
-  //           </>
-  //         )}
-
-  //         {isShowingInput && (
-  //           <>
-  //             <GameInputField
-  //               maxLength={taskOutput.length + 4}
-  //               value={userInputResult.toUpperCase()}
-  //               ref={inputRef}
-  //               onChange={(event) => setUserInputResult(event.target.value)}
-  //             />
-  //             <GameInputButton value="vergleichen" ref={inputUserRef} />
-  //           </>
-  //         )}
-
-  //         {isShowingFeedback && (
-  //           <>
-  //             <p>{feedback}</p>
-  //             <GameInputButton value="nächste Aufgabe" ref={inputUserRef} />
-  //           </>
-  //         )}
-  //       </GameOutput>
-  //     </GameForm>
-  //   </>
-  // );
 
   return (
     <Section
@@ -353,9 +229,9 @@ const Letters = () => {
 
           <GamePlayWrapper>
             <ToggleShowWrapper isShowing={isPlaying}>
-              {gameName === GAME_NAME_STARTER && gameLettersPresentation()}
-              {gameName === GAME_NAME_SECOND && gameLettersPaper()}
-              {gameName === GAME_NAME_THIRD && gameLettersInput()}
+              {gameName === GAME_NAME_STARTER
+                ? gameLettersPresentation()
+                : gameLetters()}
             </ToggleShowWrapper>
 
             <ToggleShowWrapper isShowing={!isPlaying}>
@@ -387,29 +263,3 @@ const Letters = () => {
 };
 
 export default Letters;
-
-/*
-const handleIsShowingTask = (event: React.FormEvent<HTMLElement>) => {
-    event.preventDefault();
-    gameName === GAME_NAME_STARTER && incrementTurns();
-    gameName === GAME_NAME_SECOND && (toggleIsShowingTask(), setIsShow(true));
-    // toggleIsShowingInput();
-  };
-
-  const handleIsShwoingInput = (event: React.FormEvent<HTMLElement>) => {
-    event.preventDefault();
-
-    gameName === GAME_NAME_THIRD
-      ? (toggleIsShowingInput(), toggleIsShowingFeedback())
-      : (toggleIsShowingInput(), toggleIsShowingTask(), incrementTurns());
-  };
-
-  const handleIsShowingFeedback = (event: React.FormEvent<HTMLElement>) => {
-    event.preventDefault();
-    toggleIsShowingFeedback();
-    toggleIsShowingTask();
-    incrementTurns();
-  };
-
-
-*/

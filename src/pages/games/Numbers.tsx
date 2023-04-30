@@ -17,29 +17,34 @@ import GameInputField from "../../components/assets/GameInputField";
 import GamePlayWrapper from "../../components/organisms/GamePlayWrapper";
 import { GAME_NUMBERS_INSTRUCTINS, NUMBERS_1_TO_10, OPEN_STATES } from "../../utilities/numbers";
 import { TOpenProps } from "../../utilities/types";
+import useDropdown from "../../components/hooks/useDropdown";
 
 const Numbers = () => {
-  // DROPDOWN MENU
+
   const GAME_TYPE_STARTER = GAME_NUMBERS_INSTRUCTINS.messages[0][0];
   const GAME_NAME_STARTER = GAME_NUMBERS_INSTRUCTINS.messages[0][1];
   const GAME_NAME_SECOND = GAME_NUMBERS_INSTRUCTINS.messages[1][1];
   const GAME_NAME_THIRD = GAME_NUMBERS_INSTRUCTINS.messages[2][1];
   const title = GAME_NUMBERS_INSTRUCTINS.title;
-  const [openRow, setOpenRow] = useState<TOpenProps[]>(OPEN_STATES);
-  const [game, setGame] = useState({
-    gameRow: 1,
-    gameType: GAME_TYPE_STARTER,
-    gameName: GAME_NAME_STARTER,
-  });
-  const { gameRow, gameName } = game;
+  
+  // DROPDOWN MENU
+  const [
+    gameRow,
+    gameName,
+    isFirst,
+    toggleIsFirst,
+    setIsFirst,
+    isMenuActive,
+    toggleIsMenuActive,
+    setIsMenuActive,
+    handleOpen,
+    handleGameType,
+    openRow
+  ] = useDropdown({OPEN_STATES, GAME_TYPE_STARTER, GAME_NAME_STARTER});
 
-  // GAME NUMBERS
-  // STATES
   const [isPlaying, toggleIsPlaying, setIsPlaying] = useToggle({
     initialState: false,
   });
-  const [isFirst, toggleIsFirst, setIsFirst] = useToggle();
-  const [isMenuActive, toggleIsMenuActive, setIsMenuActive] = useToggle();
 
   const [taskOutput, setTaskOutput] = useString();
   const [userInputResult, setUserInputResult] = useString();
@@ -61,44 +66,6 @@ const Numbers = () => {
   const inputPresentationRef = useRef<HTMLInputElement>(null);
   const inputPaperRef = useRef<HTMLInputElement>(null);
   const inputPCRef = useRef<HTMLInputElement>(null);
-
-  // Menu
-  const handleOpen = (gameRow: number) => {
-    setOpenRow((prevOpenRow) =>
-      prevOpenRow.map((prev) => {
-        if (prev.gameRow === gameRow) {
-          return { ...prev, state: !prev.state };
-        } else {
-          return { ...prev, state: false };
-        }
-      })
-    );
-
-    setGame((prevGame) => {
-      return {
-        ...prevGame,
-        gameRow,
-        gameType: GAME_TYPE_STARTER,
-        gameName: GAME_NAME_STARTER,
-      };
-    });
-
-    setIsFirst(true);
-    toggleIsMenuActive();
-  };
-
-  const handleGameType = (gameType: string, gameName: string) => {
-    setGame((prevGame) => {
-      return {
-        ...prevGame,
-        gameType: gameType,
-        gameName: gameName,
-      };
-    });
-
-    setIsFirst(true);
-    toggleIsMenuActive();
-  };
 
   // Game
   const handlePlayGame = (event: React.FormEvent<HTMLFormElement>) => {

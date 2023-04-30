@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import Section from "../../components/organisms/Section";
 import HeaderElement from "../../components/elements/HeaderElement";
 import { Container } from "../../components/helper/Container";
@@ -9,7 +10,6 @@ import {
   RETENTIVITY_INSTRUCTIONS,
   generateRetentivityOutput,
 } from "../../utilities/retentivity";
-import { useEffect, useRef, useState } from "react";
 import useToggle from "../../components/hooks/useToggle";
 import GamePlayWrapper from "../../components/organisms/GamePlayWrapper";
 import ToggleShowWrapper from "../../components/organisms/ToggleShowWrapper";
@@ -22,7 +22,7 @@ import GameInputField from "../../components/assets/GameInputField";
 import useCounter from "../../components/hooks/useCounter";
 import { compareStrings } from "../../utilities/output";
 import GameTaskOutput from "../../components/assets/GameTaskOutput";
-import { TOpenProps } from "../../utilities/types";
+import useDropdown from "../../components/hooks/useDropdown";
 
 const Retentivity = () => {
   const GAME_TYPE_STARTER = RETENTIVITY_INSTRUCTIONS.messages[0][0];
@@ -31,20 +31,23 @@ const Retentivity = () => {
   const GAME_NAME_THIRD = RETENTIVITY_INSTRUCTIONS.messages[2][1];
   const TITLE = RETENTIVITY_INSTRUCTIONS.title;
   const GAME_RETENTIVITY_LENGTH_STARTER = 2;
-  const [openRow, setOpenRow] = useState<TOpenProps[]>(OPEN_STATES);
-  const [game, setGame] = useState({
-    gameRow: 1,
-    gameType: GAME_TYPE_STARTER,
-    gameName: GAME_NAME_STARTER,
-  });
-  const { gameRow, gameName } = game;
+  const [
+    gameRow,
+    gameName,
+    isFirst,
+    toggleIsFirst,
+    setIsFirst,
+    isMenuActive,
+    toggleIsMenuActive,
+    setIsMenuActive,
+    handleOpen,
+    handleGameType,
+    openRow
+  ] = useDropdown({OPEN_STATES, GAME_TYPE_STARTER, GAME_NAME_STARTER});
 
   const [isPlaying, toggleIsPlaying, setIsPlaying] = useToggle({
     initialState: false,
   });
-  const [isFirst, toggleIsFirst, setIsFirst] = useToggle();
-  const [isMenuActive, toggleIsMenuActive, setIsMenuActive] = useToggle();
-
   const [tasksLength, setTaskLength] = useState<number>(10);
   const [syllablesLength, setSyllablesLength] = useState<number>(4);
 
@@ -64,55 +67,12 @@ const Retentivity = () => {
   const [correct, incrementCorrect, resetCorrect] = useCounter();
   const [turns, incrementTurns, resetTurns] = useCounter();
 
+  // Refs
   const inputPlayGameRef = useRef<HTMLInputElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const inputUserRef = useRef<HTMLInputElement>(null);
 
-  // Menu
-  // TODO -> make single
-  const handleOpen = (gameRow: number) => {
-    // TODO -> make single
-    setOpenRow((prevOpenRow) =>
-      prevOpenRow.map((prev) => {
-        if (prev.gameRow === gameRow) {
-          return { ...prev, state: !prev.state };
-        } else {
-          return { ...prev, state: false };
-        }
-      })
-    );
-
-    // TODO -> make single
-    setGame((prevGame) => {
-      return {
-        ...prevGame,
-        gameRow,
-        gameType: GAME_TYPE_STARTER,
-        gameName: GAME_NAME_STARTER,
-      };
-    });
-
-    setIsFirst(true);
-    toggleIsMenuActive();
-  };
-
-  // TODE -> make single
-  const handleGameType = (gameType: string, gameName: string) => {
-    setGame((prevGame) => {
-      return {
-        ...prevGame,
-        gameType: gameType,
-        gameName: gameName,
-      };
-    });
-
-    setIsFirst(true);
-    toggleIsMenuActive();
-  };
-
-  /*******************************************************
-   ********* Game
-   *******************************************************/
+  /* Game */
   const handlePlayGame = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsFirst(false);

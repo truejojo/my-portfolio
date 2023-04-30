@@ -9,7 +9,7 @@ const useToggle = ({ initialState = true }: TUseToggleProps = {}): [
   () => void,
   (newState: boolean) => void
 ] => {
-  const [state, setState] = useState(initialState);
+  const [state, setState] = useState<boolean>(initialState);
 
   const toggle = () => setState(!state);
 
