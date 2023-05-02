@@ -18,7 +18,34 @@
 }
 
 .main-nav {
-  align-self: end;
+  width: 100%;
+
+  .list {
+    display: flex;
+    flex-direction: column;
+  }
+  li {
+    width: 100%;
+    text-align: center;
+  }
+  a {
+    display: inline-block;
+    width: 100%;
+    padding-block: $size-3;
+  }
+
+  @include mq(wide) {
+    align-self: end;
+    width: auto;
+    display: block !important;
+
+    .list {
+      flex-direction: row;
+    }
+    a {
+      padding-left: $size-3;
+    }
+  }
 }
 
 .social-media-nav {
@@ -36,8 +63,50 @@
 
 .game-nav {
   a {
+    display: inline-block;
+    width: 100%;
+    padding: $size-2 $size-4;
+    margin-block: $size-1;
+
     &:is(:hover, :focus) {
       color: $navigation-game-nav-color-hover;
+    }
+  }
+
+  .game-nav-inner {
+    display: grid;
+    grid-template-areas: "toggle menu";
+    grid-template-columns: 100px 1fr;
+  }
+  .menu-toggler {
+    grid-area: toggle;
+    font-size: $font-size-600;
+    cursor: pointer;
+  }
+  .list {
+    grid-area: menu;
+    text-align: center;
+  }
+
+  @include mq(medium) {
+    .game-nav-inner {
+      grid-template-areas: "menu menu";
+    }
+
+    .list {
+      display: flex !important;
+      gap: calc($flex-gap / 2);
+      width: 100%;
+    }
+    .menu-toggler {
+      display: none;
+    }
+    a {
+      margin: 0;
+      padding: $size-2 $size-4;
+    }
+    .games-link {
+      margin-right: auto;
     }
   }
 }

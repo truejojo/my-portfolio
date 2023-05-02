@@ -1,0 +1,18 @@
+@use "../abstracts/" as *;
+
+.site-header {
+  .menu-toggler {
+    width: 30px;
+    font-size: $font-size-600;
+    cursor: pointer;
+
+    display: grid;
+    align-items: center;
+  }
+
+  @include mq(wide) {
+    .menu-toggler{
+      display: none;
+    }
+  }
+}

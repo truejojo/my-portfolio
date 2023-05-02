@@ -1,10 +1,16 @@
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 
-const MainNav = () => {
+type TMainNavProps = {
+  isOpen: boolean;
+};
+
+const MainNav = ({ isOpen }: TMainNavProps) => {
+  const toggleState = isOpen ? "open" : "close";
+
   return (
-    <nav className="nav main-nav">
-      <ul className="list | flex-group" role="list">
+    <nav className={`nav main-nav ${toggleState}`}>
+      <ul className="list" role="list">
         <li>
           <HashLink to="/#skills">Skills</HashLink>
         </li>
@@ -22,7 +28,7 @@ const MainNav = () => {
         </li>
       </ul>
     </nav>
-  )
-}
+  );
+};
 
-export default MainNav
+export default MainNav;

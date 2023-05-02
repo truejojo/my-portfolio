@@ -1,42 +1,53 @@
 import { NavLink } from "react-router-dom";
 import { Container } from "../helper/Container";
+import useToggle from "../hooks/useToggle";
+import { BiMenu, BiX } from "react-icons/bi";
 
-const GameNav = () => (
-  <div className="nav game-nav | bg-primary-900 px-block-4">
-    <Container>
-      <ul className="list | flex-group" role="list">
-        <li>
-          <NavLink to="/games" className={`px-2`}>
-            Games
-          </NavLink>
-        </li>
-        <li className="mx-left-auto">
-          <NavLink
-            to="numbers"
-            className={`px-block-2 px-inline-6 bg-secondary-1-700`}
-          >
-            Zahlen
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="letters"
-            className={`px-block-2 px-inline-6 bg-secondary-2-700`}
-          >
-            Buchstaben
-          </NavLink>
-        </li>
-        <li className="mx-right-auto">
-          <NavLink
-            to="retentivity"
-            className={`px-block-2 px-inline-6 bg-secondary-3-700`}
-          >
-            Merkfähigkeit
-          </NavLink>
-        </li>
-      </ul>
-    </Container>
-  </div>
-);
+const GameNav = () => {
+  const [isOpen, toggleIsOpen, setIsOpen] = useToggle({ initialState: false });
+
+  return (
+    <div className={`nav game-nav | bg-primary-900 px-block-4 ${isOpen}`}>
+      <Container>
+        <div className="game-nav-inner">
+          <div className="menu-toggler" onClick={toggleIsOpen}>
+            {isOpen ? <BiX /> : <BiMenu />}
+          </div>
+          <ul className={`list ${isOpen ? "open" : "close"}`} role="list">
+            <li className="games-link">
+              <NavLink to="/games"  className={`bg-primary-700`}>
+                Games
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="numbers"
+                className={`bg-secondary-1-700`}
+              >
+                Zahlen
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="letters"
+                className={`bg-secondary-2-700`}
+              >
+                Buchstaben
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="retentivity"
+                className={`bg-secondary-3-700`}
+              >
+                Merkfähigkeit
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+      </Container>
+    </div>
+  );
+};
 
 export default GameNav;

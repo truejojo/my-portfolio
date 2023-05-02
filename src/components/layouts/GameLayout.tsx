@@ -4,7 +4,7 @@ import GameNav from "../main/GameNav";
 const GameLayout = () => (
   <>
     <GameNav />
-      <Outlet />
+    <Outlet />
   </>
 );
 
