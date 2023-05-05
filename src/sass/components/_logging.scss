@@ -1,0 +1,43 @@
+@use "../abstracts/" as *;
+
+.logging {
+  .subTitle {
+    color: $color-text-interactive-default;
+    opacity: .85;
+  }
+
+  .input-wrapper {
+    display: grid;
+    gap: $grid-gap;
+  }
+
+  .logging-input-wrapper {
+    display: grid;
+  }
+
+  .button {
+    margin: $size-2 0 $size-4;
+  }
+
+  @include mq(medium) {
+    .logging-input-wrapper {
+      grid-template-columns: 1fr 1fr;
+      gap: calc($grid-gap/2);
+    }
+    label {
+      text-align: right;
+    }
+  }
+
+  @include mq(large) {
+    font-size: $font-size-450;
+
+    .logging-input-wrapper {
+      grid-template-columns: 4fr 5fr;
+    }
+
+    .button {
+      margin: $size-6 0 $size-8;
+    }
+  }
+}

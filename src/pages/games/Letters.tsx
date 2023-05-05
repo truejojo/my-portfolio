@@ -40,8 +40,8 @@ const Letters = () => {
     setIsMenuActive,
     handleOpen,
     handleGameType,
-    openRow
-  ] = useDropdown({OPEN_STATES, GAME_TYPE_STARTER, GAME_NAME_STARTER});
+    openRow,
+  ] = useDropdown({ OPEN_STATES, GAME_TYPE_STARTER, GAME_NAME_STARTER });
 
   const [isPlaying, toggleIsPlaying, setIsPlaying] = useToggle({
     initialState: false,
@@ -66,6 +66,8 @@ const Letters = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const inputUserRef = useRef<HTMLInputElement>(null);
   const timeoutRef = useRef<number | undefined>(undefined);
+  // const timeoutRef = useRef<React.MutableRefObject<number | undefined> | null>(null);
+  // const timeoutRef = useRefReact.MutableRefObject<number | undefined>(undefined);
 
   /* Game */
   const handlePlayGame = (event: React.FormEvent<HTMLFormElement>) => {
@@ -102,27 +104,33 @@ const Letters = () => {
     setTaskOutput(currentLetters[turns]);
 
     (gameName === GAME_NAME_SECOND || gameName === GAME_NAME_THIRD) &&
-      (timeoutRef.current = setTimeout(() => {
+      setTimeout(() => {
         setIsShow(false);
-      }, 2000));
+      }, 2000);
+      // (timeoutRef.current = setTimeout(() => {
+      //   setIsShow(false);
+      // }, 2000));
 
     inputPlayGameRef.current && inputPlayGameRef.current.focus();
     inputUserRef.current && inputUserRef.current.focus();
 
-    return () => clearInterval(timeoutRef.current);
+    // return () => clearInterval(timeoutRef.current);
   }, [isPlaying, isFirst, isMenuActive]);
 
   useEffect(() => {
     isShowingTask &&
       (setTaskOutput(currentLetters[turns]),
-      (timeoutRef.current = setTimeout(() => {
+      setTimeout(() => {
         setIsShow(false);
-      }, 2000)));
+      }, 2000));
+      // (timeoutRef.current = setTimeout(() => {
+      //   setIsShow(false);
+      // }, 2000)));
 
     inputUserRef.current && inputUserRef.current.focus();
     inputRef.current && inputRef.current.focus();
 
-    return () => clearInterval(timeoutRef.current);
+    // return () => clearInterval(timeoutRef.current);
   }, [isShowingTask, isShow]);
 
   useEffect(() => {

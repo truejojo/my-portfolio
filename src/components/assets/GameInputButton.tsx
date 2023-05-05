@@ -6,7 +6,12 @@ type TGameInputButtonProps = {
 
 const GameInputButton = forwardRef<HTMLInputElement, TGameInputButtonProps>(
   (props, ref) => (
-    <input className="button | fs-400" type="submit" value={props.value} ref={ref} />
+    <input
+      className="button | fs-400"
+      type="submit"
+      value={props.value}
+      ref={ref}
+    />
   )
 );
 

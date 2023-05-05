@@ -2,6 +2,7 @@ import React from "react";
 
 type TButtonProps = {
   dataType?: string;
+  disabled?: boolean;
   type?: "button" | "submit" | "reset" | undefined;
   onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
   children?: React.ReactNode;
@@ -10,6 +11,7 @@ type TButtonProps = {
 
 const Button = ({
   dataType,
+  disabled = false,
   type = "button",
   onClick,
   children = "zum Spiel",
@@ -19,6 +21,7 @@ const Button = ({
     className="button"
     type={type}
     data-type={dataType}
+    disabled={disabled}
     onClick={onClick}
     onKeyDown={onKeyDown}
   >

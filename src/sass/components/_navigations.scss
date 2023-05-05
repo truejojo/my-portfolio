@@ -28,7 +28,8 @@
     width: 100%;
     text-align: center;
   }
-  a {
+  a,
+  .a-span {
     display: inline-block;
     width: 100%;
     padding-block: $size-3;
@@ -42,7 +43,8 @@
     .list {
       flex-direction: row;
     }
-    a {
+    a,
+    .a-span {
       padding-left: $size-3;
     }
   }
@@ -51,7 +53,8 @@
 .social-media-nav {
   align-self: center;
 
-  a {
+  a,
+  .a-span {
     color: $navigation-text-color-hover;
     font-size: $font-size-500;
 

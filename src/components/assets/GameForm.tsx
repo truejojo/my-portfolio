@@ -2,7 +2,7 @@ import React from "react";
 
 type TGameFormProps = {
   children: React.ReactNode;
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
   classNames?: string;
 };
 const GameForm = ({ children, onSubmit, classNames }: TGameFormProps) => (

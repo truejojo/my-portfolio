@@ -144,9 +144,11 @@ const Games = () => {
           </ToggleShowWrapper>
           <ToggleShowWrapper isShowing={!isPlaying}>
             <GameForm onSubmit={handlePlayGame} classNames="bg-primary-900">
-              <GameOutput>
-                {message && <p className="fs-500">{message}</p>}
-              </GameOutput>
+              {message && (
+                <GameOutput>
+                  <p className="fs-500">{message}</p>
+                </GameOutput>
+              )}
 
               <GameInputButton
                 value={isFirst ? "Spiel starten" : "nochmal spielen"}
@@ -161,107 +163,3 @@ const Games = () => {
 };
 
 export default Games;
-
-// const getFinalMessage = (turns: number) =>
-//   turns === 1
-//     ? `Upps, was ist schief gelaufen?`
-//     : `Du hast Dir ${turns - 1} Silbenpaare merken können`;
-
-// const setFinalResult = () => {
-//   setMessage(getFinalMessage(taskOutput.length / 2));
-//   setIsPlaying(false);
-// };
-
-// const setUpGame = () => {
-//   setTaskOutput("");
-//   setUserInputResult("");
-//   setTaskOutput(generateSyllables(LENGTH_START));
-// };
-
-// const resetForNewRound = () => {
-//   setTaskOutput("");
-//   setUserInputResult("");
-//   setTaskOutput(generateSyllables(taskOutput.length / 2 + 1));
-// };
-
-// const handlePlayGame = (event: React.FormEvent<HTMLFormElement>) => {
-//   event.preventDefault();
-
-//   setIsFirst(false);
-//   setIsPlaying(true);
-//   setIsShowingTask(true);
-// };
-
-// const handleShowUserInputField = (
-//   event: React.FormEvent<HTMLFormElement>
-// ) => {
-//   event.preventDefault();
-
-//   setIsShowingTask(false);
-// };
-
-// const handleNextRound = (event: React.FormEvent<HTMLFormElement>) => {
-//   event.preventDefault();
-
-//   setIsShowingTask(true);
-// };
-
-// useEffect(() => {
-//   inputPlayGameRef.current && inputPlayGameRef.current.focus();
-// }, []);
-
-// useEffect(() => {
-//   isPlaying && setUpGame();
-//   inputPlayGameRef.current && inputPlayGameRef.current.focus();
-// }, [isPlaying]);
-
-// useEffect(() => {
-//   isShowingTask && taskOutput && userInputResult
-//     ? compareStrings(taskOutput, userInputResult)
-//       ? resetForNewRound()
-//       : setFinalResult()
-//     : null;
-//   inputRef.current && inputRef.current.focus();
-//   stringOutputRef.current && stringOutputRef.current.focus();
-// }, [isShowingTask, taskOutput, userInputResult]);
-
-{
-  /* <ToggleShowWrapper isShowing={isPlaying}>
-          <ToggleShowWrapper isShowing={isShowingTask}>
-            <GameForm
-              onSubmit={handleShowUserInputField}
-              classNames="bg-primary-900"
-            >
-              <GameOutput>
-                <p className="fs-500 letter-spacing-wide">{taskOutput}</p>
-              </GameOutput>
-              <GameInputButton value="OK" ref={stringOutputRef} />
-            </GameForm>
-          </ToggleShowWrapper>
-          <ToggleShowWrapper isShowing={!isShowingTask}>
-            <GameForm onSubmit={handleNextRound} classNames="bg-primary-900">
-              <GameOutput>
-                <GameInputField
-                  maxLength={taskOutput.length + 4}
-                  value={userInputResult.toUpperCase()}
-                  ref={inputRef}
-                  onChange={(event) => setUserInputResult(event.target.value)}
-                  inputWidth={`calc(6.25rem + ${
-                    taskOutput.length * 1.5625
-                  }rem)`}
-                />
-              </GameOutput>
-              <GameInputButton value="vergleichen" ref={stringInputRef} />
-            </GameForm>
-          </ToggleShowWrapper>
-        </ToggleShowWrapper>
-        <ToggleShowWrapper isShowing={!isPlaying}>
-          <GameForm onSubmit={handlePlayGame} classNames="bg-primary-900">
-            <GameOutput>{message && <p>{message}</p>}</GameOutput>
-            <GameInputButton
-              value={isFirst ? "Spiel starten" : "nochmal spielen"}
-              ref={inputPlayGameRef}
-            />
-          </GameForm>
-        </ToggleShowWrapper> */
-}

@@ -25,8 +25,8 @@ $font-sizes: (
     "400": 1rem,
     "300": 1rem,
     "200": 0.75rem,
-    ),
-    "medium": (
+  ),
+  "medium": (
     "900": 3.5rem,
     "800": 3.5rem,
     "700": 2.25rem,
@@ -36,8 +36,8 @@ $font-sizes: (
     "400": 1.125rem,
     "300": 1rem,
     "200": 0.75rem,
-    ),
-    "large": (
+  ),
+  "large": (
     "900": 5rem,
     "800": 4rem,
     "700": 2.75rem,
@@ -55,6 +55,7 @@ $font-size-800: var(--fs-800);
 $font-size-700: var(--fs-700);
 $font-size-600: var(--fs-600);
 $font-size-500: var(--fs-500);
+$font-size-450: var(--fs-450);
 $font-size-400: var(--fs-400);
 $font-size-300: var(--fs-300);
 $font-size-200: var(--fs-200);

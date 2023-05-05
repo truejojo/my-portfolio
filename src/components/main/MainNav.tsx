@@ -1,5 +1,7 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import { useAuth } from "../context/AuthProvider";
+import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 
 type TMainNavProps = {
   isOpen: boolean;
@@ -7,6 +9,7 @@ type TMainNavProps = {
 
 const MainNav = ({ isOpen }: TMainNavProps) => {
   const toggleState = isOpen ? "open" : "close";
+  const { user, logOut } = useAuth();
 
   return (
     <nav className={`nav main-nav ${toggleState}`}>
@@ -24,8 +27,21 @@ const MainNav = ({ isOpen }: TMainNavProps) => {
           <HashLink to="/#interests">Interests</HashLink>
         </li>
         <li>
-          <Link to="games">Games</Link>
+          <NavLink to="games">Games</NavLink>
         </li>
+        {user ? (
+          <li>
+            <span className="a-span" onClick={logOut}>
+              <FaSignOutAlt />
+            </span>
+          </li>
+        ) : (
+          <li>
+            <NavLink to="login">
+              <FaSignInAlt />
+            </NavLink>
+          </li>
+        )}
       </ul>
     </nav>
   );
