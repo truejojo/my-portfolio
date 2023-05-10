@@ -2,7 +2,7 @@
 import Card from "../elements/Card";
 import { TListElementProps } from "../assets/ListElement";
 
-type TCardListProps = {
+export type TCardListProps = {
   id: number;
   title: string;
   items: TListElementProps[];
