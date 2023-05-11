@@ -1,11 +1,9 @@
 import Headline3 from "../assets/Headline3";
 import List from "./List";
-import { TListElementProps } from "../assets/ListElement";
 
 export type TCardProps = {
-  id: number;
   title: string;
-  items: TListElementProps[];
+  items: string[];
   bgName: string;
 };
 

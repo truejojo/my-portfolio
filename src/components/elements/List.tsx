@@ -1,14 +1,14 @@
-import ListElement, { TListElementProps } from "../assets/ListElement";
+import ListElement from "../assets/ListElement";
 
 type TListProps = {
-  items: TListElementProps[];
+  items: string[];
   bg: string;
 };
 
 const List = ({ items, bg }: TListProps) => (
   <ul className={`list | flow ${bg}`} role="list">
     {items.length > 0 &&
-      items.map((item) => <ListElement key={item.id} {...item} />)}
+      items.map((item, index) => <ListElement key={index} item={item} />)}
   </ul>
 );
 

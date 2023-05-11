@@ -1,5 +1,4 @@
 export type TListElementProps = {
-  id: number;
   item: string;
 };
 

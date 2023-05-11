@@ -1,23 +1,30 @@
-
+import { collection } from "@firebase/firestore";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+import { db } from "../../firebase/config";
 import Card from "../elements/Card";
-import { TListElementProps } from "../assets/ListElement";
-
-export type TCardListProps = {
-  id: number;
-  title: string;
-  items: TListElementProps[];
-};
 
 type TCardWrapperProps = {
-  cardsList: TCardListProps[];
+  path: string;
   bgName?: string;
 };
 
-const CardWrapper = ({ cardsList, bgName = "" }: TCardWrapperProps) => {
+const CardWrapper = ({ path, bgName = "" }: TCardWrapperProps) => {
+  const query = collection(db, path);
+  const [docs, loading, error] = useCollectionData(query);
+
   return (
     <>
-      {cardsList.map((card) => (
-        <Card key={card.id} {...card} bgName={bgName} />
+      {loading && <p>Loading..</p>}
+
+      {error && <p>Leider ist was schief gelaufen...</p>}
+
+      {docs?.map((doc) => (
+        <Card
+          key={doc?.id}
+          title={doc?.title}
+          items={doc?.items}
+          bgName={bgName}
+        />
       ))}
     </>
   );
