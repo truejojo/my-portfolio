@@ -79,73 +79,45 @@ const Home = () => {
 
       <Section sectionName="about" bgNumber="700">
         <ContainerSmall>
-          <TextWithLinksWrapper path={`homepage/${about?.name}/content`} />
-          {/* <div className="person">
+          {/* <TextWithLinksWrapper path={`homepage/${about?.name}/content`} /> */}
+          <div className="person">
             <Headline2>Über mich</Headline2>
             <p className="text">
               Ich bin ein Familienmensch. Papa, Ehemann und leidenschaftlicher
-              Programmierer 👨‍💻. Fahre gerne Fahrrad 🚲 und mag Fussball ⚽️.
+              Programmierer. Fahre gerne Fahrrad und mag Fussball.
             </p>
             <span className="img">👨‍👩‍👧‍👦</span>
-          </div> */}
+          </div>
 
-          {/* <div className="body-text | flow"> */}
-            {/* <p>
+          <div className="body-text | flow">
+            <p>
               2016 habe ich meine Umschulung zum Anwendungsentwickler
-              erfolgreich abgeschlossen 👨‍🎓, nun möchte ich auch in diesem Beruf
-              tätig sein. Auf href="xing.com" [meinem Xing Profil], könnt ihr
-              meine letzten beruflichen Stationen sehen. Mein beruflicher
-              Werdegang ist in meinem Lebenslauf enthalten, den ich Euch bei
-              Interesse gerne zu sende.
-            </p> */}
-            {/* <p>
-              2016 habe ich meine Umschulung zum Anwendungsentwickler
-              erfolgreich abgeschlossen 👨‍🎓, nun möchte ich auch in diesem Beruf
+              erfolgreich abgeschlossen, nun möchte ich auch in diesem Beruf
               tätig sein. Auf <ALink href="xing.com">meinem Xing Profil</ALink>,
               könnt ihr meine letzten beruflichen Stationen sehen. Mein
               beruflicher Werdegang ist in meinem Lebenslauf enthalten, den ich
               Euch bei Interesse gerne zu sende.
-            </p> */}
+            </p>
 
-            {/* <p>
-              Im Juli 2022 habe ich eine online Zertifizierung bei
-              href="scrimba.com" [Scrimba] zum href="scrimba.com/learn/frontend"
-              [Frontend Developer] abgeschlossen und eine Weiterbildung Juli -
-              November 2022 bei future Training & Consulting GmbH mit dem
-              Schwerpunkt React durchgeführt.
-            </p> */}
-            {/* <p>
+            <p>
               Im Juli 2022 habe ich eine online Zertifizierung bei{" "}
               <ALink href="scrimba.com">Scrimba</ALink> zum{" "}
               <ALink href="scrimba.com/learn/frontend">
                 Frontend Developer
               </ALink>{" "}
-              abgeschlossen und eine Weiterbildung Juli - November 2022 bei
+              abgeschlossen und eine Weiterbildung von Juli - November 2022 bei
               future Training & Consulting GmbH mit dem Schwerpunkt React
               durchgeführt.
-            </p> */}
+            </p>
 
-            {/* <p>
-              Suche ein sympatisches Team 👩🏼‍💻👨🏻‍💻👨🏿‍💻, welches nicht davor zurück
-              schreckt, einen älteren Kerl als Junior Frontend Developer
-              einzustellen. Auf href="github.com/" [meinem GitHub Profil] könnt
-              Ihr den Code 💻 zu der gesamten Webseite einsehen und euch einen
-              Überblick über meine anderen Projekte und Interessen verschaffen.
-            </p> */}
-            {/* <p>
-              Suche ein sympatisches Team 👩🏼‍💻👨🏻‍💻👨🏿‍💻, welches nicht davor zurück
-              schreckt, einen älteren Kerl als Junior Frontend Developer
-              einzustellen. Auf{" "}
+            <p>
+              Suche ein sympatisches Team, welches nicht davor zurück schreckt,
+              einen älteren Kerl als Junior Frontend Developer einzustellen. Auf{" "}
               <ALink href="github.com/">meinem GitHub Profil</ALink> könnt Ihr
-              den Code 💻 zu der gesamten Webseite einsehen und euch einen
+              den Code zu der gesamten Webseite einsehen und euch einen
               Überblick über meine anderen Projekte und Interessen verschaffen.
-            </p> */}
-
-            {/* <p>
-              Eine 30-35 Std. 🕒 Stelle in Hamburg oder nord-westliches Umland -
-              das wäre Perfekt. Anfangen kann ich ab sofort.
-            </p> */}
-          {/* </div> */}
+            </p>
+          </div>
         </ContainerSmall>
       </Section>
 
